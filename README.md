@@ -1,7 +1,15 @@
 # UNI-PI-3
 projeto de PI3
 
-caso não funcione usar:
+caso não funcione na sua maquina ir no console e:
+
+    cd serv
+
+depois instala as dependencias usando:
+
+    npm install
+
+e por fim instala o React Router:
 
     npm install react-router-dom
 
