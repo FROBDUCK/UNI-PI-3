@@ -32,7 +32,56 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.cards-services {
+  display: flex;
+  gap: 32px;
+  /* Espaçamento entre os cards */
+  margin: 24px;
+  /* Margem ao redor de todo o conteúdo */
+  justify-content: center;
+  /* Centraliza os cards na página */
+  flex-wrap: wrap;
+}
+
+.card-container {
+  width: 328px;
+  height: 469px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+}
+
+.card-image img {
+  width: 324px;
+  height: 469px;
+  object-fit: cover;
+}
+
+.card-container:hover .card-image img {
+  filter: brightness(50%);
+}
+
+.card-content {
+  position: absolute;
+  top: 24px;
+  margin-left: 16px;
+  color: white;
+  font-size: 24px;
+  font-family: 'Inter';
+  font-weight: bold;
+  line-height: 50px;
+  z-index: 2;
 }
