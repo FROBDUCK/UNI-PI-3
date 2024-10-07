@@ -1,0 +1,132 @@
+/* Estilo geral para o container */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Estilo para as rows */
+  .row {
+    display: flex;
+    justify-content: space-around; /* Distribui os itens com espaçamento */
+    align-items: center; /* Alinha verticalmente no centro */
+    margin-bottom: 20px;
+  }
+
+  #logoimg{
+    /* margin-left: -9%; */
+    height: 90px;
+    width: 100px;
+  }
+  .botoesrow1{
+    background-color: transparent;
+    border: transparent;
+    height: 30px;
+    width: 240px;
+    font-size: 20px;
+  }
+
+  #entrar {
+    font-size: 18px;
+    height: 70px;
+    width: 120px;
+    background-color: #5454C8; /* Cor de fundo */
+    color: #F4F4FB; /* Cor do texto */
+    border: none; /* Remove borda padrão */
+    padding: 10px 20px; /* Tamanho do botão */
+    border-radius: 12px; /* Bordas arredondadas */
+    font-weight: bold; /* Texto em negrito */
+    cursor: pointer; /* Cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Animação para hover */
+  }
+  
+  #entrar:hover {
+    background-color: #4343a9; /* Cor de fundo ao passar o mouse */
+  }
+
+  #cadastro {
+    font-size: 18px;
+    height: 70px;
+    width: 120px;
+    background-color: #F4F4FB; /* Cor de fundo (anteriormente era a cor do texto) */
+    color: #5454C8; /* Cor do texto (anteriormente era a cor do fundo) */
+    border: none; /* Remove borda padrão */
+    padding: 10px 20px; /* Tamanho do botão */
+    border-radius: 12px; /* Bordas arredondadas */
+    font-weight: bold; /* Texto em negrito */
+    cursor: pointer; /* Cursor ao passar sobre o botão */
+    transition: background-color 0.3s; /* Animação para hover */
+  }
+  
+  #cadastro:hover {
+    background-color: #e1e1e1; /* Cor de fundo ao passar o mouse */
+  }
+  
+  
+  
+  /* Estilo específico para os botões */
+  #row-buttons1 {
+    margin-left: 15%;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os botões */
+  }
+  
+  #row-buttons2 {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Tamanhos das colunas */
+  #col-text {
+    width: 50%;
+  }
+  
+  .clickable {
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .clickable:hover {
+    background-color: #f0f0f0;
+  }
+  
+  #item1, #item2 {
+    width: 20%; /* Exemplo de tamanhos para os itens */
+  }
+  
+  /* Adiciona espaçamento e estilos responsivos */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Alinhar as imagens e o texto nas colunas clicáveis */
+  .clickable img {
+    width: 389px;
+    height: 89px;
+    margin-bottom: 10px;
+  }
+  
+  
+  #row2{
+    background-color:#FF6600;
+    border-radius: 12px;
+    height: 500px;
+
+  }
+
+  #mulherimg{
+    width: 542px;
+  height: 499px;
+  }
+
+  #textobanner{
+    font-size: 54px;
+    font-weight: bold;
+    color: white;
+  }
+
+ 
