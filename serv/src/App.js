@@ -3,6 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import Sobre from './Sobre';
+import TempLogin from './TempLogin';
+import Signup from './Signup';
+import Logadohome from './Logadohome';
 import Card from './components/card';
 
 const App = () => {
@@ -12,13 +15,17 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
+          <Route path="/TempLogin" element={<TempLogin />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/Logadohome" element={<Logadohome />} />
+
         </Routes>
-        <div className='cards'>
+        {/* <div className='cards'>
         <Card imageSrc="./images/image2.png" title="Design e tecnologia" />
         <Card imageSrc="./images/image1.png" title="Moda e beleza" />
         <Card imageSrc="./images/image3.png" title="Reparos e reformas" />
         <Card imageSrc="./images/image4.png" title="Artes" />
-        </div>
+        </div> */}
       </div>
     </Router>
   );
