@@ -16,8 +16,12 @@ import { Link } from 'react-router-dom';
                 <button className='botoesrow1' id="contratar">Eu quero contratar</button>
               </div>
               <div className="row" id="row-buttons2">
+              <Link to="/TempLogin">
                 <button id="entrar">Entrar</button>
+                </Link>
+                <Link to="/signup"> 
                 <button id="cadastro">Cadastro</button>
+                </Link>
               </div>
             </div>
       
