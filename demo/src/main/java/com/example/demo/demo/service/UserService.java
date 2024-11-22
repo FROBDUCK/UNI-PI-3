@@ -35,6 +35,7 @@ public class UserService {
 
     }
 
+    // engatilhado...
     public void deleteById(Long id) throws Exception {
 
         if (getById(id) != null) {
