@@ -12,6 +12,7 @@ depois instala as dependencias usando:
 e por fim instala o React Router:
 
     npm install react-router-dom
+    >> pra coneção com o springboot tem que instalar o npm install axios
 
 Estrutura da pagina home:
 
