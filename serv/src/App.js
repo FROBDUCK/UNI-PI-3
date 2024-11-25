@@ -7,6 +7,9 @@ import TempLogin from './TempLogin';
 import Signup from './Signup';
 import Logadohome from './Logadohome';
 import Card from './components/card';
+import CadastroUsuario from "./CadastroUsuario";
+import ListaUsuarios from "./ListaUsuarios";
+import UsuarioPorId from "./UsuarioPorId";
 
 const App = () => {
   return (
@@ -18,6 +21,9 @@ const App = () => {
           <Route path="/TempLogin" element={<TempLogin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/Logadohome" element={<Logadohome />} />
+          <Route path="/cadastro" element={<CadastroUsuario />} />
+          <Route path="/usuarios" element={<ListaUsuarios />} />
+          <Route path="/usuario" element={<UsuarioPorId />} />
 
         </Routes>
         {/* <div className='cards'>
