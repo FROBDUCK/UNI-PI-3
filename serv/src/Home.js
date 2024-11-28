@@ -2,6 +2,7 @@
 import React from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
+
       {/* <Link to="/sobre">
         <button>Ir para Sobre</button>
       </Link> */}
@@ -81,6 +82,20 @@ import { Link } from 'react-router-dom';
               </div>
               {/* Continue adicionando os itens */}
             </div>
+
+
+          
+      <div>
+        <nav>
+          <a href="/cadastro">Cadastro</a> | 
+          <a href="/usuarios">Lista de Usuários</a> | 
+          <a href="/usuario">Buscar Usuário por ID</a>
+        </nav>
+      
+      </div>
+   
+
+
           </div>
         );
       };
