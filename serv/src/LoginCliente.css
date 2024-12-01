@@ -1,0 +1,50 @@
+.total {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.esquerda {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 100vh;
+    position: relative;
+}
+
+.direita {
+    display: flex;
+    width: 50%;
+    right: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto {
+    display: flex;
+    align-items: baseline;
+}
+
+.texto > a {
+    padding-left: 7px;
+    color: 5454C8;
+}
+
+.cadastre {
+    display: flex;
+    align-items: baseline;
+}
+
+.cadastre > a {
+    padding-left: 7px;
+    color: 5454C8;
+}
+
+#minilogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100px;
+    height: auto;
+}
