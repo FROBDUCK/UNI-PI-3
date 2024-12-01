@@ -1,4 +1,4 @@
-// src/Sobre.js
+import Footer from './components/Footer';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,7 @@ const Sobre = () => {
       <Link to="/">
         <button>Ir para Home</button>
       </Link>
+      <Footer/>
     </div>
   );
 };
