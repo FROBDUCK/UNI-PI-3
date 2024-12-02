@@ -75,7 +75,9 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             {/* Input de Email */}
             <div style={{ marginBottom: '15px' }}>
-              <label style={{ display: 'block', marginBottom: '5px' }}>Email</label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}
+              
+              >Email</label>
               <input
                 type="email"
                 placeholder="Insira seu email"
@@ -94,7 +96,7 @@ const Login = () => {
 
             {/* Input de Senha */}
             <div style={{ marginBottom: '15px', position: 'relative' }}>
-              <label style={{ display: 'block', marginBottom: '5px' }}>Senha</label>
+              <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Senha</label>
               <input
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Insira sua senha"
