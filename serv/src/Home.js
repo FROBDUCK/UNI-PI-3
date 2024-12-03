@@ -1,8 +1,9 @@
 // src/Home.js
 import React from 'react';
 import './Home.css';
-import Footer from './components/Footer';
 import { Link } from 'react-router-dom';
+import WorkerList from './WorkerList';
+
 
       {/* <Link to="/sobre">
         <button>Ir para Sobre</button>
@@ -37,6 +38,15 @@ import { Link } from 'react-router-dom';
               </div>
               <img id='mulherimg' src="mulher.png" alt="imagem" />
             </div>
+
+
+            {/* começo da Lista */}
+            <section style={{ marginTop: '20px', padding: '10px', backgroundColor: '#f9f9f9' }}>
+              <h2>Lista de Prestadores</h2>
+              <WorkerList />
+            </section>
+
+            {/* fim da lista  */}
 
             <div id="categorias">
               <div class="categ">
@@ -92,7 +102,7 @@ import { Link } from 'react-router-dom';
           <a href="/usuarios">Lista de Usuários</a> | 
           <a href="/usuario">Buscar Usuário por ID</a>
         </nav>
-        <Footer />
+      
       </div>
    
 
