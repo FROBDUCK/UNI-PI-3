@@ -1,0 +1,60 @@
+.total {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.esquerda {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #fff;
+}
+
+.direita {
+    display: flex;
+    width: 50%;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+
+#minilogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.texto {
+    display: flex;
+    align-items: baseline;
+}
+
+.texto > a {
+    padding-left: 7px;
+    color: 5454C8;
+}
+
+.cadastre {
+    display: flex;
+    align-items: baseline;
+}
+
+.cadastre > a {
+    padding-left: 7px;
+    color: 5454C8;
+}
