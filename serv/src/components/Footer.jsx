@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo2.png'
 import { Button } from './Button';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -20,9 +21,11 @@ const Footer = () => {
                     <Button type="primary" onClick={handleClick}>Enviar</Button>
                 </div>
                 <div class="footer-final">
-                    <div class="left">
+                <div className="left">
+                    <Link to="/sobre">
                         <h3>Quem somos?</h3>
-                        <a href='https://example.com'>Sobre nós</a>
+                        <p>Sobre nós</p>
+                    </Link>
                     </div>
                     <div class="right">
                         <div class="social-media">
