@@ -1,9 +1,8 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './Home.css';
-import { Link } from 'react-router-dom';
 import WorkerList from './WorkerList';
 import Logout from './components/Logout';
-import axios from 'axios';
 
 const Logadohome = () => {
   const userName = localStorage.getItem('userName'); // Nome do usuário logado

@@ -1,7 +1,7 @@
 // src/components/Logout.js
+import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Logout = () => {
   const navigate = useNavigate();
