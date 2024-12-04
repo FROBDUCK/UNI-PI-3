@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import CadastroUsuario from "./CadastroUsuario";
+import ScrollToTop from './components/ScrollToTop';
 import Home from './Home';
 import ListaUsuarios from "./ListaUsuarios";
 import Logadohome from './Logadohome';
