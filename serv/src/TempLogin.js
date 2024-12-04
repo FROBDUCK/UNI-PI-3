@@ -36,7 +36,7 @@ const handleLogin = async (e) => {
     }
 
     alert(`Bem-vindo, ${userName}`);
-    navigate('/Logadohome');
+    navigate('/logado');
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     alert('Erro no login. Verifique os dados.');

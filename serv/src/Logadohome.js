@@ -6,8 +6,8 @@ import Logout from './components/Logout';
 import axios from 'axios';
 
 const Logadohome = () => {
-  const userName = localStorage.getItem('userName'); // Nome do usuário logado
-  const loggedInRole = localStorage.getItem('role'); // Papel do usuário (worker ou customer)
+  const userName = localStorage.getItem('userName'); 
+  const loggedInRole = localStorage.getItem('role'); 
   const [workerId, setWorkerId] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [newJob, setNewJob] = useState({ title: '', description: '', price: '' });
