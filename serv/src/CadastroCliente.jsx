@@ -1,6 +1,6 @@
 import React from 'react';
 import './CadastroCliente.css';
-import minilogo from './assets/minilogo.png';
+import logo from './assets/logobranca.png';
 import imgcadastro from './assets/imgcadastrocliente.png';
 import EmailInput from './components/EmailInput';
 import NameInput from './components/NameInput';
@@ -17,7 +17,9 @@ const CadastroCliente = () => {
         <cadastrocliente class="cadastro">
             <div class="total">
                 <div class="esquerda">
-                    <img id="minilogo" src={minilogo} alt="Mini Logo" />
+                    <Link to="/">
+                        <img id="minilogo" src={logo} alt="Mini Logo" />
+                    </Link>
                     <img id="imagem-lateral" src={imgcadastro} alt="Imagem Cadastro" />
                 </div>
             </div>

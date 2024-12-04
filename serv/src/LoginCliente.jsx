@@ -1,8 +1,7 @@
 import React from 'react';
-import BotaoEnviar from './components/BotaoEnviar';
 import EmailInput from './components/EmailInput';
 import './LoginCliente.css';
-import minilogo from './assets/minilogo.png'
+import logo from './assets/logobranca.png';
 import imgcliente from './assets/imglogincliente.png';
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from './components/Button';
@@ -18,7 +17,9 @@ const LoginCliente = () => {
         <logincliente class="login">
             <div class="total">
                 <div class="esquerda">
-                    <img id="minilogo" src={minilogo} alt="Mini Logo" />
+                    <Link to="/">
+                        <img id="minilogo" src={logo} alt="Mini Logo" />
+                    </Link>
                     <img id="imagem-lateral" src={imgcliente} alt="Imagem Cliente" />
                 </div>
 
