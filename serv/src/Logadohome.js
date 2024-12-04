@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Home.css';
 import { Link } from 'react-router-dom';
 import WorkerList from './WorkerList';
-import Logout from './components/Logout';
 import axios from 'axios';
+import HeaderLogado from './components/HeaderLogado';
 
-const Logadohome = () => {
-  const userName = localStorage.getItem('userName'); 
+const Logadohome = () => { 
   const loggedInRole = localStorage.getItem('role'); 
   const [workerId, setWorkerId] = useState(null);
   const [jobs, setJobs] = useState([]);
@@ -111,21 +110,7 @@ const handleDeleteJob = async (jobId) => {
 
   return (
     <div className="container">
-      <div className="row" id="row1">
-        <img id="logoimg" src="Logotipo.png" alt="Logo" />
-        <div className="row" id="row-buttons1">
-          <button className="botoesrow1" id="servico">
-            Eu quero prestar serviço
-          </button>
-          <button className="botoesrow1" id="contratar">
-            Eu quero contratar
-          </button>
-        </div>
-        <div className="row" id="row-buttons2">
-          <p>Bem-vindo, {userName}!</p>
-          <Logout />
-        </div>
-      </div>
+      <HeaderLogado/>
 
       <div className="row" id="row2">
         <div className="col" id="col-text">
