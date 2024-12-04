@@ -21,11 +21,11 @@ const Footer = () => {
                     <Button type="primary" onClick={handleClick}>Enviar</Button>
                 </div>
                 <div class="footer-final">
-                <div className="left">
-                    <Link to="/sobre">
+                    <div className="left">
                         <h3>Quem somos?</h3>
-                        <p>Sobre nós</p>
-                    </Link>
+                        <Link to="/sobre">
+                            <p>Sobre nós</p>
+                        </Link>
                     </div>
                     <div class="right">
                         <div class="social-media">
@@ -38,8 +38,8 @@ const Footer = () => {
                         </div>
                         <div class="copyright">
                             <p>© Serv 2024</p>
-                            <a href="https://example.com">Privacy policy</a>
-                            <a href="https://example.com">Terms of use</a>
+                            <p><a href="a">Privacy policy</a></p>
+                            <p><a href="a">Terms of use</a></p>
                         </div>
                     </div>
                 </div>

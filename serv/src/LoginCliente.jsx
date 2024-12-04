@@ -1,16 +1,18 @@
 import React from 'react';
-import BotaoEnviar from './componentes/BotaoEnviar';
-import EmailInput from './componentes/EmailInput';
+import BotaoEnviar from './components/BotaoEnviar';
+import EmailInput from './components/EmailInput';
 import './LoginCliente.css';
-import PasswordInput from './componentes/PasswordInput';
+import minilogo from './assets/minilogo.png'
+import imgcliente from './assets/imglogincliente.png';
+import PasswordInput from './components/PasswordInput';
 
 const LoginCliente = () => {
     return (
         <logincliente class="login">
             <div class="total">
                 <div class="esquerda">
-                    <img id="minilogo" src="\minilogo.png" alt="Mini Logo"/>
-                    <img id="imagem-lateral" src="\imglogincliente.png" alt="Imagem Cliente"/>
+                    <img id="minilogo" src={minilogo} alt="Mini Logo"/>
+                    <img id="imagem-lateral" src={imgcliente} alt="Imagem Cliente"/>
                 </div>
 
                 <div class="direita">

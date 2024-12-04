@@ -1,4 +1,4 @@
-import { HeaderSobre } from "./components/HeaderSobre";
+import { Header} from "./components/Header";
 import image1 from './assets/image1.png';
 import image2 from './assets/logomarca.png';
 import image3 from './assets/image3.png';
@@ -14,7 +14,7 @@ import Footer from './components/Footer'
 function Sobre() {
   return (
     <div className="sobre">
-      <HeaderSobre />
+      <Header/>
       <section className="banner">
         <div className="banner_text">
           <h1>A conexão entre <strong className="change-purple">talento e necessidade</strong> transforma o <strong className="change-orange">futuro</strong> do trabalho.</h1>
