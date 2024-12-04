@@ -9,12 +9,12 @@ export function Header() {
 
   
   const handleCadastrar = () => {
-    navigate('/cadastro');  
+    navigate('/cadastrocliente');  
   };
 
   
   const handleEntrar = () => {
-    navigate('/login');  
+    navigate('/logincliente');  
   };
 
   return (

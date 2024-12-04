@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';  
 import Sobre from './Sobre';  
 import TempLogin from './TempLogin';
+import CadastroCliente from './CadastroCliente';
 import Logadohome from './Logadohome'; 
 import LoginCliente from './LoginCliente';
 import Signup from './Signup';
-import ListaUsuarios from "./ListaUsuarios";  
-import UsuarioPorId from "./UsuarioPorId";
 import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
@@ -18,11 +17,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} /> 
-          <Route path="/login" element={<LoginCliente />} />
-          <Route path="/Logadohome" element={<Logadohome />} />
-          <Route path="/cadastro" element={<Signup />} />
-          <Route path="/usuarios" element={<ListaUsuarios />} />
-          <Route path="/usuario" element={<UsuarioPorId />} />
+          <Route path="/logincliente" element={<LoginCliente />} />
+          <Route path="/logado" element={<Logadohome />} />
+          <Route path="/cadastrocliente" element={<CadastroCliente />} />
         </Routes>
       </div>
     </Router>

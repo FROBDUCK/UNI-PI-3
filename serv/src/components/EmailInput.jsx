@@ -9,13 +9,14 @@ const EmailInput = () => {
             placeholder="Digite seu e-mail"
             style={{
                 width: "400px",
-                padding: "20px",
+                padding: "12px 12px",
+                marginTop: "0.25rem",
                 fontSize: "16px",
                 border: "none",
                 borderRadius: "10px",
                 outline: "none",
                 backgroundColor: "#F2F2F2",
-                marginBottom: "20px",
+                marginBottom: "1rem",
                 fontWeight: "semibold",
             }}
         />

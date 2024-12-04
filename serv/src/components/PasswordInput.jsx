@@ -16,14 +16,15 @@ function PasswordInput() {
           placeholder="Digite sua senha"
           style={{
             fontSize: "16px",
+            marginTop: "0.25rem",
             width: "400px",
-            padding: "20px",
+            padding: "12px 12px",
             paddingRight: "50px",
-            border: "none", 
+            border: "none",
             borderRadius: "10px",
             outline: "none",
             backgroundColor: "#F2F2F2",
-            marginBottom: "20px"
+            marginBottom: "1rem",
           }}
         />
         <button
@@ -33,15 +34,11 @@ function PasswordInput() {
             cursor: "pointer",
             border: "none",
             position: "absolute",
-            right: "15px",
             top: "50%",
-            transform: "translateY(-50%)",
+            right: '0',
+            width: '10%',
+            transform: "translateY(-80%)", 
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            padding: "0 15px",
-            marginBottom: "20px"
           }}
           aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
         >

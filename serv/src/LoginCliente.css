@@ -2,6 +2,7 @@
     display: flex;
     width: 100vw;
     height: 100vh;
+    position: fixed;
 }
 
 .esquerda {
@@ -13,35 +14,48 @@
 }
 
 .direita {
-    display: flex;
-    width: 50%;
+    position: fixed;
     right: 0;
+    width: 50%; 
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: var(--neutral-0);
 }
 
-.texto {
+.cabecalho {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 60%;
 }
 
-.texto > a {
-    padding-left: 7px;
-    color: 5454C8;
+.inputs {
+    width: 60%;
+}
+
+.texto a {
+    padding-left: 0.25rem;
+    color: #5454C8;
 }
 
 .cadastre {
     display: flex;
-    align-items: baseline;
+    padding-top: 1rem;
 }
 
 .cadastre > a {
-    padding-left: 7px;
-    color: 5454C8;
+    padding-left: 0.25rem;
+    color: #5454C8;
 }
 
 #minilogo {
     position: absolute;
     top: 1.5rem;
 }
+
+.login Button {
+    width: 25rem;
+ }

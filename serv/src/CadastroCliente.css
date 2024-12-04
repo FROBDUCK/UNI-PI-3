@@ -3,41 +3,44 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    top: 0;
-    left: 0;
 }
 
 .esquerda {
     display: flex;
-    width: 50%;
+    justify-content: flex-start;
+    align-items: stretch;
     height: 100vh;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #fff;
+    position: relative;
 }
 
 .direita {
-    display: flex;
-    width: 50%;
-    height: 100vh;
     position: fixed;
     right: 0;
-    top: 0;
+    width: 50%; 
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background: var(--neutral-0);
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    position: relative;
+    width: 50%;
 }
 
 
-#minilogo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 100%;
-    height: auto;
+.cabecalho {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 50%;
 }
+
 
 .texto {
     display: flex;
@@ -46,15 +49,20 @@
 
 .texto > a {
     padding-left: 7px;
-    color: 5454C8;
+    color: #5454C8;
 }
 
 .cadastre {
     display: flex;
-    align-items: baseline;
+    padding-top: 1rem;
+
 }
 
-.cadastre > a {
-    padding-left: 7px;
-    color: 5454C8;
+.cadastre a {
+    padding-left: 0.25rem;
+    color: #5454C8;
+}
+
+.cadastro Button {
+   width: 25rem;
 }
