@@ -1,6 +1,7 @@
 // src/Home.js
 import React from 'react';
 import './Home.css';
+import Footer from './components/Footer';
 import { Link } from 'react-router-dom';
 import WorkerList from './WorkerList';
 
@@ -102,7 +103,7 @@ import WorkerList from './WorkerList';
           <a href="/usuarios">Lista de Usuários</a> | 
           <a href="/usuario">Buscar Usuário por ID</a>
         </nav>
-      
+        <Footer />
       </div>
    
 
