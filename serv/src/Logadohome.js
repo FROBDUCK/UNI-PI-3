@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './Logadohome.css';
-import logo from './assets/logo.png';
+import './Home.css';
 import { Link } from 'react-router-dom';
 import WorkerList from './WorkerList';
 import Logout from './components/Logout';
 import axios from 'axios';
-import Categorias from "./components/Categorias";
-import imglogado from './assets/imglogado.png';
-import Footer from './components/Footer';
-import ServicosPopulares from './components/ServicosPopulares';
 
 const Logadohome = () => {
   const userName = localStorage.getItem('userName'); // Nome do usuário logado
@@ -89,21 +84,21 @@ const Logadohome = () => {
   };
 
   // Deletar um trabalho
-  // Função para deletar um trabalho
-  const handleDeleteJob = async (jobId) => {
-    try {
-      const response = await axios.delete(`http://localhost:8080/api/jobs/${jobId}`);
-      if (response.status === 200 || response.status === 204) {
-        setJobs(jobs.filter((job) => job.id !== jobId)); // Remove o trabalho deletado da lista
-        alert('Trabalho deletado com sucesso!');
-      } else {
-        throw new Error('Falha ao deletar o trabalho.');
-      }
-    } catch (err) {
-      console.error('Erro ao deletar o trabalho:', err);
-      alert('Erro ao deletar o trabalho.');
+// Função para deletar um trabalho
+const handleDeleteJob = async (jobId) => {
+  try {
+    const response = await axios.delete(`http://localhost:8080/api/jobs/${jobId}`);
+    if (response.status === 200 || response.status === 204) {
+      setJobs(jobs.filter((job) => job.id !== jobId)); // Remove o trabalho deletado da lista
+      alert('Trabalho deletado com sucesso!');
+    } else {
+      throw new Error('Falha ao deletar o trabalho.');
     }
-  };
+  } catch (err) {
+    console.error('Erro ao deletar o trabalho:', err);
+    alert('Erro ao deletar o trabalho.');
+  }
+};
 
 
   if (loading) {
@@ -116,25 +111,36 @@ const Logadohome = () => {
 
   return (
     <div className="container">
-      <header className="header">
-        <Link to="/">
-          <img src={logo} alt="logo da marca" />
-        </Link>
-        <div className="bem-vindo">
-          <p>{userName}</p>
+      <div className="row" id="row1">
+        <img id="logoimg" src="Logotipo.png" alt="Logo" />
+        <div className="row" id="row-buttons1">
+          <button className="botoesrow1" id="servico">
+            Eu quero prestar serviço
+          </button>
+          <button className="botoesrow1" id="contratar">
+            Eu quero contratar
+          </button>
+        </div>
+        <div className="row" id="row-buttons2">
+          <p>Bem-vindo, {userName}!</p>
           <Logout />
         </div>
-      </header>
-      <section className="banner">
-        <div className="saudacao">
-          <p>Olá, {userName}👋🏻</p>
-          <h3>Vamos encontrar o melhor profissional para você!</h3>
+      </div>
+
+      <div className="row" id="row2">
+        <div className="col" id="col-text">
+          <p id="textobanner">
+            Encontre o serviço que você precisa com o profissional que desejar
+          </p>
+          <div className="div-pesquisa">
+            <input id="busca" type="text" placeholder="O que você está procurando?" />
+            <button id="pesquisar">
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
         </div>
-        <div className="banner_img">
-          <img src={imglogado} alt='imagem de mulheres' />
-        </div>
-      </section>
-      <Categorias />
+        <img id="mulherimg" src="mulher.png" alt="imagem" />
+      </div>
 
       {/* Exibe os trabalhos ou a lista de prestadores */}
       {loggedInRole === 'worker' ? (
@@ -179,13 +185,15 @@ const Logadohome = () => {
           </form>
         </div>
       ) : (
-        <section className="prof_qualif">
-          <h1>Profissionais qualificados</h1>
+        <section style={{ marginTop: '20px', padding: '10px', backgroundColor: '#f9f9f9' }}>
+          <h2>Lista de Prestadores</h2>
           <WorkerList />
         </section>
       )}
-      <ServicosPopulares/>
-      <Footer/>
+
+      <div id="categorias">
+        {/* Categorias */}
+      </div>
     </div>
   );
 };

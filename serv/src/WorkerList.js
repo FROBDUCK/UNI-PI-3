@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import WorkerDetails from './WorkerDetails';
-import { Button } from './components/Button';
-import { ReactComponent as X_Circle } from './assets/x_circle.svg';
-import styles from './WorkerList.module.css';
 
 const WorkerList = () => {
   const [workers, setWorkers] = useState([]);
@@ -50,32 +47,36 @@ const WorkerList = () => {
 
   return (
     <div>
-      <div className={styles.cards}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '16px' }}>
         {workers.map((worker) => (
-          <div key={worker.id} className={styles.card_worker}>
-            <div className={styles.details}>
-              <div className={styles.name_city}>
-                <strong>{worker.userName}</strong>
-                <p>
-                  {worker.addresses[0]?.city}, {worker.addresses[0]?.state}
-                </p>
-              </div>
-              <p className={styles.pilula}>{worker.fieldOfWork}</p>
-            </div>
-            <Button type="primary" onClick={() => handleWorkerClick(worker.id)}>Saber mais</Button>
+          <div
+            key={worker.id}
+            style={{
+              border: '1px solid #ddd',
+              borderRadius: '8px',
+              padding: '16px',
+              cursor: 'pointer',
+              width: '200px',
+            }}
+            onClick={() => handleWorkerClick(worker.id)}
+          >
+            <h3>{worker.userName}</h3>
+            <p><strong>Área:</strong> {worker.fieldOfWork}</p>
+            <p>
+              <strong>Endereço:</strong> {worker.addresses[0]?.city}, {worker.addresses[0]?.state}
+            </p>
           </div>
-
         ))}
       </div>
-
 
       {showModal && selectedWorkerId && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
             <button
-            className={styles.x_button}
-              onClick={handleCloseModal}>
-                <X_Circle className={styles.x_icon} />
+              style={modalStyles.closeButton}
+              onClick={handleCloseModal}
+            >
+              X
             </button>
             <WorkerDetails id={selectedWorkerId} />
           </div>
@@ -99,12 +100,23 @@ const modalStyles = {
     zIndex: 1000,
   },
   modal: {
-    backgroundColor: 'var(--neutral-0)',
+    backgroundColor: '#fff',
     padding: '20px',
     borderRadius: '8px',
     width: '90%',
     maxWidth: '600px',
     position: 'relative',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    fontSize: '18px',
+    backgroundColor: 'red',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '50%',
+    cursor: 'pointer',
   },
 };
 
