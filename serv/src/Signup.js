@@ -14,11 +14,11 @@ const Signup = () => {
     district: '',
     street: '',
     num: '',
-    cpf: '', // Apenas para clientes
-    cnpj: '', // Apenas para prestadores
-    fieldOfWork: '', // Apenas para prestadores
-    bio: '', // Apenas para prestadores
-    cliente: true, // Define se é cliente ou prestador
+    cpf: '', 
+    cnpj: '', 
+    fieldOfWork: '', 
+    bio: '', 
+    cliente: true,
   });
 
   const handleChange = (e) => {
@@ -28,12 +28,11 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Determina o endpoint com base no tipo de usuário
     const endpoint = formData.cliente
       ? 'http://localhost:8080/api/customers'
       : 'http://localhost:8080/api/workers';
 
-    // Prepara os dados para envio
+
     const data = {
       userName: formData.nome,
       email: formData.email,
@@ -51,7 +50,6 @@ const Signup = () => {
       ],
     };
 
-    // Adiciona campos específicos com base no tipo de usuário
     if (formData.cliente) {
       data.cpf = formData.cpf;
     } else {
@@ -92,10 +90,10 @@ const Signup = () => {
       <input name="street" placeholder="Rua" onChange={handleChange} />
       <input name="num" placeholder="Número" onChange={handleChange} />
 
-      {/* Campos específicos para Cliente */}
+     
       {formData.cliente && <input name="cpf" placeholder="CPF" onChange={handleChange} />}
 
-      {/* Campos específicos para Prestador */}
+    
       {!formData.cliente && (
         <>
           <input name="cnpj" placeholder="CNPJ" onChange={handleChange} />
@@ -104,7 +102,6 @@ const Signup = () => {
         </>
       )}
 
-      {/* Toggle para Cliente ou Prestador */}
       <label>
         {formData.cliente ? 'Cliente' : 'Prestador'}
         <input
@@ -112,7 +109,7 @@ const Signup = () => {
           name="cliente"
           checked={formData.cliente}
           onChange={(e) => setFormData({ ...formData, cliente: e.target.checked })}
-          style={{ display: 'none' }} // Esconde o checkbox padrão
+          style={{ display: 'none' }}
         />
         <span
           onClick={() => setFormData({ ...formData, cliente: !formData.cliente })}
