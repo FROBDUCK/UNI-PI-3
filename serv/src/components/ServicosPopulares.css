@@ -1,0 +1,41 @@
+.servicos-populares {
+    width: 100%;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  .servicos-populares h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .servicos-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  
+  .servico {
+    width: 22%; /* Aproximadamente 1/4 do container com espaçamento */
+    aspect-ratio: 3 / 4; /* Proporção 3:4 para as caixas */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .servico h3 {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
