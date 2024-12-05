@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import './Home.css';
+import './Logadohome.css';
+import logo from './assets/logo.png';
 import { Link } from 'react-router-dom';
 import WorkerList from './WorkerList';
 import Logout from './components/Logout';
 import axios from 'axios';
+import Categorias from "./components/Categorias";
+import imglogado from './assets/imglogado.png';
+import Footer from './components/Footer';
+import ServicosPopulares from './components/ServicosPopulares';
 
 const Logadohome = () => {
   const userName = localStorage.getItem('userName'); // Nome do usuário logado
@@ -19,8 +24,17 @@ const Logadohome = () => {
     const fetchWorkerId = async () => {
       if (loggedInRole === 'worker') {
         try {
-          const response = await axios.get('http://localhost:8080/api/workers');
-          const loggedWorker = response.data.find(worker => worker.userName === userName);
+          const response = await axios.get(
+            'https://a1ae-160-19-45-104.ngrok-free.app/api/workers',
+            {
+              headers: {
+                "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+              },
+            }
+          );
+          const loggedWorker = response.data.find(
+            worker => worker.userName === userName
+          );
           if (loggedWorker) {
             setWorkerId(loggedWorker.id);
           } else {
@@ -36,69 +50,94 @@ const Logadohome = () => {
         setLoading(false);
       }
     };
-
+  
     fetchWorkerId();
   }, [loggedInRole, userName]);
+  
 
-  // Obtém os trabalhos do prestador
+  // Obtém os trabalhos do prestador workers/${workerId}/jobs`);
   useEffect(() => {
     if (workerId) {
       const fetchJobs = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/api/workers/${workerId}/jobs`);
-          setJobs(response.data);
+          const response = await axios.get(
+            `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs`,
+            {
+              headers: {
+                "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+              },
+            }
+          );
+          setJobs(response.data); // Define os trabalhos retornados
         } catch (err) {
           console.error('Erro ao buscar os trabalhos do prestador:', err);
           setError('Erro ao buscar os trabalhos.');
         }
       };
-
+  
       fetchJobs();
     }
   }, [workerId]);
+  
 
   // Adicionar um novo trabalho
-  const handleAddJob = async (e) => {
-    e.preventDefault();
-    if (workerId) {
-      try {
-        const response = await axios.post(
-          `http://localhost:8080/api/workers/${workerId}/add-job`,
-          null,
-          {
-            params: {
-              jobTitle: newJob.title,
-              description: newJob.description,
-              price: newJob.price,
-            },
-          }
-        );
-        setJobs([...jobs, response.data]);
-        setNewJob({ title: '', description: '', price: '' });
-        alert('Trabalho adicionado com sucesso!');
-      } catch (err) {
-        console.error('Erro ao adicionar o trabalho:', err);
-        alert('Erro ao adicionar o trabalho.');
-      }
-    }
-  };
+ const handleAddJob = async (e) => {
+  e.preventDefault();
+  if (workerId) {
+    try {
+      const response = await axios.post(
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
+        null, // Corpo da requisição é `null`
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+          params: {
+            jobTitle: newJob.title,
+            description: newJob.description,
+            price: newJob.price,
+          },
+        }
+      );
 
-  // Deletar um trabalho
-// Função para deletar um trabalho
-const handleDeleteJob = async (jobId) => {
-  try {
-    const response = await axios.delete(`http://localhost:8080/api/jobs/${jobId}`);
-    if (response.status === 200 || response.status === 204) {
-      setJobs(jobs.filter((job) => job.id !== jobId)); // Remove o trabalho deletado da lista
-      alert('Trabalho deletado com sucesso!');
-    } else {
-      throw new Error('Falha ao deletar o trabalho.');
+      // Atualiza o estado com o novo trabalho adicionado
+      setJobs([...jobs, response.data]);
+      setNewJob({ title: '', description: '', price: '' }); // Reseta o formulário
+      alert('Trabalho adicionado com sucesso!');
+    } catch (err) {
+      console.error('Erro ao adicionar o trabalho:', err);
+      alert('Erro ao adicionar o trabalho.');
     }
-  } catch (err) {
-    console.error('Erro ao deletar o trabalho:', err);
-    alert('Erro ao deletar o trabalho.');
   }
 };
+
+
+  // Deletar um trabalho
+  // Função para deletar um trabalho
+  const handleDeleteJob = async (jobId) => {
+    try {
+      const response = await axios.delete(
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/jobs/${jobId}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      );
+  
+      if (response.status === 200 || response.status === 204) {
+        // Atualiza o estado removendo o trabalho deletado
+        setJobs(jobs.filter((job) => job.id !== jobId));
+        alert('Trabalho deletado com sucesso!');
+      } else {
+        throw new Error('Falha ao deletar o trabalho.');
+      }
+    } catch (err) {
+      console.error('Erro ao deletar o trabalho:', err);
+      alert('Erro ao deletar o trabalho.');
+    }
+  };
+  
 
 
   if (loading) {
@@ -111,36 +150,25 @@ const handleDeleteJob = async (jobId) => {
 
   return (
     <div className="container">
-      <div className="row" id="row1">
-        <img id="logoimg" src="Logotipo.png" alt="Logo" />
-        <div className="row" id="row-buttons1">
-          <button className="botoesrow1" id="servico">
-            Eu quero prestar serviço
-          </button>
-          <button className="botoesrow1" id="contratar">
-            Eu quero contratar
-          </button>
-        </div>
-        <div className="row" id="row-buttons2">
-          <p>Bem-vindo, {userName}!</p>
+      <header className="header">
+        <Link to="/logado">
+          <img src={logo} alt="logo da marca" />
+        </Link>
+        <div className="bem-vindo">
+          <p>{userName}</p>
           <Logout />
         </div>
-      </div>
-
-      <div className="row" id="row2">
-        <div className="col" id="col-text">
-          <p id="textobanner">
-            Encontre o serviço que você precisa com o profissional que desejar
-          </p>
-          <div className="div-pesquisa">
-            <input id="busca" type="text" placeholder="O que você está procurando?" />
-            <button id="pesquisar">
-              <i className="fas fa-search"></i>
-            </button>
-          </div>
+      </header>
+      <section className="banner">
+        <div className="saudacao">
+          <p>Olá, {userName}👋🏻</p>
+          <h3>Vamos encontrar o melhor profissional para você!</h3>
         </div>
-        <img id="mulherimg" src="mulher.png" alt="imagem" />
-      </div>
+        <div className="banner_img">
+          <img src={imglogado} alt='imagem de mulheres' />
+        </div>
+      </section>
+      <Categorias />
 
       {/* Exibe os trabalhos ou a lista de prestadores */}
       {loggedInRole === 'worker' ? (
@@ -185,15 +213,13 @@ const handleDeleteJob = async (jobId) => {
           </form>
         </div>
       ) : (
-        <section style={{ marginTop: '20px', padding: '10px', backgroundColor: '#f9f9f9' }}>
-          <h2>Lista de Prestadores</h2>
+        <section className="prof_qualif">
+          <h1>Profissionais qualificados</h1>
           <WorkerList />
         </section>
       )}
-
-      <div id="categorias">
-        {/* Categorias */}
-      </div>
+      <ServicosPopulares/>
+      <Footer/>
     </div>
   );
 };

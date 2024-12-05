@@ -7,7 +7,11 @@ function UsuarioPorId() {
 
   const buscarUsuario = () => {
     axios
-      .get(`http://localhost:8080/api/v1/user-clientes/${id}`)
+      .get(`https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+        },
+      })
       .then((response) => {
         setUsuario(response.data);
       })
@@ -17,10 +21,14 @@ function UsuarioPorId() {
         setUsuario(null);
       });
   };
-
+  
   const deletarUsuario = () => {
     axios
-      .delete(`http://localhost:8080/api/v1/user-clientes/${id}`)
+      .delete(`https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`, {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+        },
+      })
       .then(() => {
         alert("Usuário deletado com sucesso!");
         setUsuario(null);
@@ -30,10 +38,15 @@ function UsuarioPorId() {
         alert("Erro ao deletar usuário.");
       });
   };
-
+  
   const alterarUsuario = () => {
     axios
-      .put(`http://localhost:8080/api/v1/user-clientes/${id}`, usuario)
+      .put(`https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`, usuario, {
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+        },
+      })
       .then(() => {
         alert("Usuário alterado com sucesso!");
       })
@@ -42,6 +55,7 @@ function UsuarioPorId() {
         alert("Erro ao alterar usuário.");
       });
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

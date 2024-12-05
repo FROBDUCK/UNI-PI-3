@@ -6,7 +6,11 @@ function ListaUsuarios() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/user-clientes/")
+      .get("https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/", {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+        },
+      })
       .then((response) => {
         console.log("Resposta da API:", response); // Log detalhado da resposta
         setUsuarios(response.data); // Atualiza o estado com os dados dos usuários
@@ -15,6 +19,7 @@ function ListaUsuarios() {
         console.error("Erro ao buscar usuários:", error); // Log do erro no console
       });
   }, []);
+  
 
   return (
     <div>

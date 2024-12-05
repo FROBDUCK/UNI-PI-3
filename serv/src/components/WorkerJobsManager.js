@@ -13,7 +13,14 @@ const WorkerJobsManager = () => {
   useEffect(() => {
     const fetchWorkerDetails = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/login/worker-details'); // Novo endpoint para obter os detalhes
+        const response = await axios.get(
+          'https://a1ae-160-19-45-104.ngrok-free.app/api/login/worker-details',
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+            },
+          }
+        );
         setWorker(response.data);
         setWorkerId(response.data.id); // Obtém o ID do trabalhador
       } catch (err) {
@@ -23,31 +30,45 @@ const WorkerJobsManager = () => {
         setLoading(false);
       }
     };
-
+  
     fetchWorkerDetails();
   }, []);
-
+  
   // Buscar os trabalhos do trabalhador logado
   useEffect(() => {
     if (workerId) {
       const fetchJobs = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/api/workers/${workerId}/jobs`);
+          const response = await axios.get(
+            `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs`,
+            {
+              headers: {
+                "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+              },
+            }
+          );
           setJobs(response.data);
         } catch (err) {
           console.error('Erro ao buscar os trabalhos do prestador:', err);
           setError('Erro ao buscar os trabalhos.');
         }
       };
-
+  
       fetchJobs();
     }
   }, [workerId]);
-
+  
   // Deletar um trabalho
   const handleDeleteJob = async (jobId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/workers/${workerId}/jobs/${jobId}`);
+      await axios.delete(
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs/${jobId}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      );
       setJobs(jobs.filter((job) => job.id !== jobId)); // Remove o trabalho deletado da lista
       alert('Trabalho deletado com sucesso!');
     } catch (err) {
@@ -55,15 +76,18 @@ const WorkerJobsManager = () => {
       alert('Erro ao deletar o trabalho.');
     }
   };
-
+  
   // Adicionar um novo trabalho
   const handleAddJob = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:8080/api/workers/${workerId}/add-job`,
-        null,
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
+        null, // Corpo da requisição é nulo
         {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
           params: {
             jobTitle: newJob.title,
             description: newJob.description,
@@ -79,6 +103,7 @@ const WorkerJobsManager = () => {
       alert('Erro ao adicionar o trabalho.');
     }
   };
+  
 
   if (loading) {
     return <div>Carregando trabalhos...</div>;

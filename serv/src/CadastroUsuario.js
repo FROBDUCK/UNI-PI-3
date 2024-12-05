@@ -19,7 +19,16 @@ function CadastroUsuario() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/v1/user-clientes/", formData)
+      .post(
+        "https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then((response) => {
         alert("Usuário cadastrado com sucesso!");
         setFormData({
@@ -36,6 +45,7 @@ function CadastroUsuario() {
         alert("Erro ao cadastrar usuário.");
       });
   };
+  
 
   return (
     <div>

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import WorkerDetails from './WorkerDetails';
+import { Button } from './components/Button';
+import { ReactComponent as X_Circle } from './assets/x_circle.svg';
+import styles from './WorkerList.module.css';
 
 const WorkerList = () => {
   const [workers, setWorkers] = useState([]);
@@ -11,9 +14,16 @@ const WorkerList = () => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/workers');
+        const response = await fetch(
+          'https://a1ae-160-19-45-104.ngrok-free.app/api/workers',
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+            },
+          }
+        );
         if (!response.ok) {
-          throw new Error('Erro ao buscar os trabalhadores');
+          throw new Error("Erro ao buscar os trabalhadores");
         }
         const data = await response.json();
         setWorkers(data);
@@ -23,9 +33,10 @@ const WorkerList = () => {
         setLoading(false);
       }
     };
-
+  
     fetchWorkers();
   }, []);
+  
 
   const handleWorkerClick = (id) => {
     setSelectedWorkerId(id);
@@ -47,36 +58,32 @@ const WorkerList = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '16px' }}>
+      <div className={styles.cards}>
         {workers.map((worker) => (
-          <div
-            key={worker.id}
-            style={{
-              border: '1px solid #ddd',
-              borderRadius: '8px',
-              padding: '16px',
-              cursor: 'pointer',
-              width: '200px',
-            }}
-            onClick={() => handleWorkerClick(worker.id)}
-          >
-            <h3>{worker.userName}</h3>
-            <p><strong>Área:</strong> {worker.fieldOfWork}</p>
-            <p>
-              <strong>Endereço:</strong> {worker.addresses[0]?.city}, {worker.addresses[0]?.state}
-            </p>
+          <div key={worker.id} className={styles.card_worker}>
+            <div className={styles.details}>
+              <div className={styles.name_city}>
+                <strong>{worker.userName}</strong>
+                <p>
+                  {worker.addresses[0]?.city}, {worker.addresses[0]?.state}
+                </p>
+              </div>
+              <p className={styles.pilula}>{worker.fieldOfWork}</p>
+            </div>
+            <Button type="primary" onClick={() => handleWorkerClick(worker.id)}>Saber mais</Button>
           </div>
+
         ))}
       </div>
+
 
       {showModal && selectedWorkerId && (
         <div style={modalStyles.overlay}>
           <div style={modalStyles.modal}>
             <button
-              style={modalStyles.closeButton}
-              onClick={handleCloseModal}
-            >
-              X
+            className={styles.x_button}
+              onClick={handleCloseModal}>
+                <X_Circle className={styles.x_icon} />
             </button>
             <WorkerDetails id={selectedWorkerId} />
           </div>
@@ -100,23 +107,12 @@ const modalStyles = {
     zIndex: 1000,
   },
   modal: {
-    backgroundColor: '#fff',
+    backgroundColor: 'var(--neutral-0)',
     padding: '20px',
     borderRadius: '8px',
     width: '90%',
     maxWidth: '600px',
     position: 'relative',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    fontSize: '18px',
-    backgroundColor: 'red',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '50%',
-    cursor: 'pointer',
   },
 };
 
