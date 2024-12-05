@@ -1,0 +1,35 @@
+#categorias {
+  margin-top: 72px;
+  margin-bottom: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.categ > p {
+  font-weight: bold;
+}
+
+.categ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 120px;
+  height: 120px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  transition: 100ms ease-in-out;
+}
+
+.categ:hover {
+  background: #f4f4fb;
+  transform: scale(1.05);
+  color: #ff6600;
+}
+
+.categ > i {
+  font-size: 40px;
+}

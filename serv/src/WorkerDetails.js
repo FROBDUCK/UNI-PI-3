@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Button } from './components/Button';
+import './WorkerDetails.css';
 
-const WorkerDetails = () => {
-  const { id } = useParams(); // Pega o ID do trabalhador pela URL
+const WorkerDetails = ({ id }) => {
   const [worker, setWorker] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedJobId, setSelectedJobId] = useState(null);
+  const [showWhatsAppLink, setShowWhatsAppLink] = useState(false);
 
-  // Simulação de autenticação
-  const isUserLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+  const loggedInUser = localStorage.getItem('userName');
+  const loggedInRole = localStorage.getItem('role');
 
-  // Buscar detalhes do trabalhador
   useEffect(() => {
     const fetchWorkerDetails = async () => {
       try {
@@ -31,11 +32,10 @@ const WorkerDetails = () => {
     fetchWorkerDetails();
   }, [id]);
 
-  // Buscar trabalhos do trabalhador
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/workers/${id}/jobs`); //${id}
+        const response = await fetch(`http://localhost:8080/api/workers/${id}/jobs`);
         if (!response.ok) {
           throw new Error('Erro ao buscar os trabalhos do trabalhador');
         }
@@ -49,6 +49,28 @@ const WorkerDetails = () => {
     fetchJobs();
   }, [id]);
 
+  const handleHireJob = (jobId) => {
+    if (loggedInUser && loggedInRole === 'customer') {
+      setSelectedJobId(jobId);
+      setShowWhatsAppLink(true);
+      alert(`Você contratou o trabalho com ID: ${jobId}`);
+    } else {
+      alert('Você precisa estar logado como cliente para contratar este serviço.');
+    }
+  };
+
+  const handleFinalizeJob = () => {
+    const rating = prompt('Digite uma nota para o prestador (0-5):');
+    if (!rating || isNaN(rating) || rating < 0 || rating > 5) {
+      alert('Por favor, insira uma nota válida entre 0 e 5.');
+      return;
+    }
+
+    alert(`Trabalho finalizado com nota ${rating}!`);
+    setSelectedJobId(null);
+    setShowWhatsAppLink(false);
+  };
+
   if (loading) {
     return <div>Carregando...</div>;
   }
@@ -58,23 +80,29 @@ const WorkerDetails = () => {
   }
 
   return (
-    <div style={{ padding: '16px' }}>
-      {/* Detalhes do trabalhador */}
-      <h1>{worker.userName}</h1>
-      <p><strong>Email:</strong> {worker.email}</p>
-      <p><strong>Telefone:</strong> {worker.phoneNumber}</p>
-      <p><strong>Área de Trabalho:</strong> {worker.fieldOfWork}</p>
-      <p><strong>Biografia:</strong> {worker.bio}</p>
-      <p><strong>Endereço:</strong> {worker.addresses[0]?.city}, {worker.addresses[0]?.state}</p>
-      <p><strong>Avaliação Média:</strong> {worker.avgRating}</p>
+    <div className="worker-details">
+      <strong>{worker.userName}</strong>
+      <div className="worker-info">
+        <p>Email: {worker.email}</p>
+        <p>Telefone: {worker.phoneNumber}</p>
+        <p>Área de Trabalho: {worker.fieldOfWork}</p>
+        <p>Biografia: {worker.bio}</p>
+        <p>Endereço: {worker.addresses[0]?.city}, {worker.addresses[0]?.state}</p>
+        <p >Avaliação Média: {worker.avgRating}</p>
+      </div>
 
-      {/* Lista de Trabalhos */}
-      <h2>Trabalhos Disponíveis</h2>
+      <strong style={{ color: "var(--neutral-600)", fontSize: "1.125rem" }}>Trabalhos Disponíveis</strong>
       {jobs.length > 0 ? (
-        <ul>
+        <ul className="jobs-list">
           {jobs.map((job) => (
-            <li key={job.id}>
+            <li key={job.id} className="job-item">
               <strong>{job.title}</strong>: {job.description} - R${job.price.toFixed(2)}
+              <Button
+                onClick={() => handleHireJob(job.id)}
+                disabled={selectedJobId === job.id}
+              >
+                {selectedJobId === job.id ? 'Contratado' : 'Contratar'}
+              </Button>
             </li>
           ))}
         </ul>
@@ -82,17 +110,31 @@ const WorkerDetails = () => {
         <p>Este trabalhador ainda não possui trabalhos disponíveis.</p>
       )}
 
-      {/* Botão de Contratar */}
-      {isUserLoggedIn ? (
-        <button style={{ marginTop: '20px', padding: '10px', fontSize: '16px' }}>
-          Contratar
-        </button>
-      ) : (
-        <p style={{ color: 'red', marginTop: '20px' }}>
-          Faça login para contratar este trabalhador.
-        </p>
+      {showWhatsAppLink && (
+        <div className="whatsapp-link">
+          <p>Entre em contato com o trabalhador:</p>
+          <div className='buttons'>
+            <a
+              href={`https://api.whatsapp.com/send?phone=55${worker.phoneNumber}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whatsapp-button"
+            >
+              Abrir WhatsApp
+            </a>
+            <button
+              className="finalize-button"
+              onClick={handleFinalizeJob}
+            >
+              Finalizar Parceria
+            </button>
+          </div>
+        </div>
       )}
+      
     </div>
+
+    
   );
 };
 
