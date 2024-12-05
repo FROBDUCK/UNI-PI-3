@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from './components/Button';
-import './WorkerDetails.css';
 
 const WorkerDetails = ({ id }) => {
   const [worker, setWorker] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedJobId, setSelectedJobId] = useState(null);
-  const [showWhatsAppLink, setShowWhatsAppLink] = useState(false);
+  const [selectedJobId, setSelectedJobId] = useState(null); // Para armazenar o ID do trabalho contratado
+  const [showWhatsAppLink, setShowWhatsAppLink] = useState(false); // Para exibir o link do WhatsApp
 
   const loggedInUser = localStorage.getItem('userName');
-  const loggedInRole = localStorage.getItem('role');
+  const loggedInRole = localStorage.getItem('role'); // Pode ser 'worker' ou 'customer'
 
   useEffect(() => {
     const fetchWorkerDetails = async () => {
@@ -66,9 +64,10 @@ const WorkerDetails = ({ id }) => {
       return;
     }
 
+    // Aqui você pode implementar a lógica para finalizar o trabalho na API
     alert(`Trabalho finalizado com nota ${rating}!`);
-    setSelectedJobId(null);
-    setShowWhatsAppLink(false);
+    setSelectedJobId(null); // Limpa o trabalho contratado
+    setShowWhatsAppLink(false); // Esconde o link do WhatsApp
   };
 
   if (loading) {
@@ -80,29 +79,32 @@ const WorkerDetails = ({ id }) => {
   }
 
   return (
-    <div className="worker-details">
-      <strong>{worker.userName}</strong>
-      <div className="worker-info">
-        <p>Email: {worker.email}</p>
-        <p>Telefone: {worker.phoneNumber}</p>
-        <p>Área de Trabalho: {worker.fieldOfWork}</p>
-        <p>Biografia: {worker.bio}</p>
-        <p>Endereço: {worker.addresses[0]?.city}, {worker.addresses[0]?.state}</p>
-        <p >Avaliação Média: {worker.avgRating}</p>
-      </div>
+    <div>
+      <h1>{worker.userName}</h1>
+      <p><strong>Email:</strong> {worker.email}</p>
+      <p><strong>Telefone:</strong> {worker.phoneNumber}</p>
+      <p><strong>Área de Trabalho:</strong> {worker.fieldOfWork}</p>
+      <p><strong>Biografia:</strong> {worker.bio}</p>
+      <p><strong>Endereço:</strong> {worker.addresses[0]?.city}, {worker.addresses[0]?.state}</p>
+      <p><strong>Avaliação Média:</strong> {worker.avgRating}</p>
 
-      <strong style={{ color: "var(--neutral-600)", fontSize: "1.125rem" }}>Trabalhos Disponíveis</strong>
+      <h2>Trabalhos Disponíveis</h2>
       {jobs.length > 0 ? (
-        <ul className="jobs-list">
+        <ul>
           {jobs.map((job) => (
-            <li key={job.id} className="job-item">
+            <li key={job.id}>
               <strong>{job.title}</strong>: {job.description} - R${job.price.toFixed(2)}
-              <Button
+              <button
+                style={{
+                  marginLeft: '10px',
+                  padding: '5px',
+                  fontSize: '14px',
+                }}
                 onClick={() => handleHireJob(job.id)}
-                disabled={selectedJobId === job.id}
+                disabled={selectedJobId === job.id} // Desabilita se já foi contratado
               >
                 {selectedJobId === job.id ? 'Contratado' : 'Contratar'}
-              </Button>
+              </button>
             </li>
           ))}
         </ul>
@@ -111,30 +113,40 @@ const WorkerDetails = ({ id }) => {
       )}
 
       {showWhatsAppLink && (
-        <div className="whatsapp-link">
+        <div style={{ marginTop: '20px' }}>
           <p>Entre em contato com o trabalhador:</p>
-          <div className='buttons'>
-            <a
-              href={`https://api.whatsapp.com/send?phone=55${worker.phoneNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whatsapp-button"
-            >
-              Abrir WhatsApp
-            </a>
-            <button
-              className="finalize-button"
-              onClick={handleFinalizeJob}
-            >
-              Finalizar Parceria
-            </button>
-          </div>
+          <a
+            href={`https://api.whatsapp.com/send?phone=55${worker.phoneNumber}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              margin: '10px 0',
+              padding: '10px',
+              backgroundColor: '#25D366',
+              color: '#fff',
+              textDecoration: 'none',
+              borderRadius: '5px',
+            }}
+          >
+            Abrir WhatsApp
+          </a>
+          <button
+            style={{
+              display: 'block',
+              marginTop: '10px',
+              padding: '10px',
+              backgroundColor: '#4CAF50',
+              color: '#fff',
+              borderRadius: '5px',
+            }}
+            onClick={handleFinalizeJob}
+          >
+            Finalizar Parceria
+          </button>
         </div>
       )}
-      
     </div>
-
-    
   );
 };
 
