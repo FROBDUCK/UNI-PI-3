@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
                 <div class="footer-final">
                     <div className="left">
-                        <h3>Quem somos?</h3>
+                        <strong>Quem somos?</strong>
                         <Link to="/sobre">
                             <p>Sobre nós</p>
                         </Link>

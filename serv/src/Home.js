@@ -1,5 +1,4 @@
 import React from "react";
-import "./Home.css";
 import Footer from "./components/Footer";
 import {Header} from "./components/Header";
 import ComoFunciona from "./components/ComoFunciona";

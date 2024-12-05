@@ -51,6 +51,11 @@
   text-decoration: none;
 }
 
+.footer-final strong {
+  font-size: 1.25rem;
+  color: var(--primary-600);
+}
+
 .footer-final p, .footer-final a {
   font-weight: 400;
   font-size: 0.875rem;
@@ -62,10 +67,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.left h3 {
-  color: #f05410;
 }
 
 .right {
