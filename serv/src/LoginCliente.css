@@ -1,0 +1,63 @@
+.total {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+.esquerda {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 100vh;
+    position: relative;
+}
+
+.direita {
+    position: fixed;
+    right: 0;
+    width: 50%; 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--neutral-0);
+}
+
+.cabecalho {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 60%;
+}
+
+.inputs {
+    width: 60%;
+    padding: 2rem 0;
+}
+
+.texto a {
+    padding-left: 0.25rem;
+    color: #5454C8;
+}
+
+.cadastre {
+    display: flex;
+    padding-top: 1rem;
+}
+
+.cadastre > a {
+    padding-left: 0.25rem;
+    color: #5454C8;
+}
+
+#minilogo {
+    position: absolute;
+    top: 1.5rem;
+    margin: 0 2rem;
+}
+
+.login Button {
+    width: 25rem;
+ }

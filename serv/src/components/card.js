@@ -1,7 +1,6 @@
 import React from 'react';
-import '../App.css';
 
-const Card = ({ imageSrc, title }) => {
+export function Card({ imageSrc, title }) {
   return (
     <div className="card-container">
       <div className="card-image">
@@ -12,6 +11,4 @@ const Card = ({ imageSrc, title }) => {
       </div>
     </div>
   );
-};
-
-export default Card;
+}
