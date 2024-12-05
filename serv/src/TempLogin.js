@@ -47,7 +47,7 @@ const Login = () => {
       <div
         style={{
           flex: 1,
-          backgroundImage: 'url("/images/img-login.png")',
+          backgroundImage: 'url("/assets/img-login.png")',
 
           backgroundSize: 'cover',
           backgroundPosition: 'center',
