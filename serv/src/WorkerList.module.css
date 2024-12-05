@@ -1,0 +1,68 @@
+.cards {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+}
+
+.card_worker {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 36px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.name_city {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 332px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cards Button {
+    margin-top: 3rem;
+}
+
+.pilula {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    width: 93px;
+    background: var(--primary-200);
+    border-radius: 44px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--primary-600);
+    text-align: center;
+}
+
+
+
+.card_worker strong {
+    color: var(--neutral-700);
+    font-size: 1.25rem;
+}
+
+.x_button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    right: 0;
+    padding-right: 1rem;
+    padding-top: 1rem;
+
+}
+
+.x_icon {
+    fill: var(--neutral-600);
+}
