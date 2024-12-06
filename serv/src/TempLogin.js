@@ -21,10 +21,19 @@ const Login = () => {
       ? 'https://a1ae-160-19-45-104.ngrok-free.app/api/login/worker'
       : 'https://a1ae-160-19-45-104.ngrok-free.app/api/login/customer';
 
-      const response = await axios.post(endpoint, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        endpoint,
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      );
 
       const userName = response.data.split(": ")[1];
       localStorage.setItem("userName", userName);
