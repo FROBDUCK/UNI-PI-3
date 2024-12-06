@@ -18,8 +18,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const endpoint = isWorker
-        ? "http://localhost:8080/api/login/worker"
-        : "http://localhost:8080/api/login/customer";
+      ? 'https://a1ae-160-19-45-104.ngrok-free.app/api/login/worker'
+      : 'https://a1ae-160-19-45-104.ngrok-free.app/api/login/customer';
 
       const response = await axios.post(endpoint, {
         email,
