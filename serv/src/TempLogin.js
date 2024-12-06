@@ -49,7 +49,7 @@ const Login = () => {
       }
 
       alert(`Bem-vindo, ${userName}`);
-      navigate("/Logadohome");
+      navigate("/Logado");
     } catch (error) {
       console.error("Erro ao fazer login:", error);
       alert("Erro no login. Verifique os dados.");
