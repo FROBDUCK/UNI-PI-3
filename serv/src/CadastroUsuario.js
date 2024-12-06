@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 function CadastroUsuario() {
   const [formData, setFormData] = useState({
@@ -45,7 +45,6 @@ function CadastroUsuario() {
         alert("Erro ao cadastrar usuário.");
       });
   };
-  
 
   return (
     <div>

@@ -31,12 +31,12 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Ajusta o endpoint com a URL do servidor Ngrok
     const endpoint = formData.cliente
       ? "https://a1ae-160-19-45-104.ngrok-free.app/api/customers"
       : "https://a1ae-160-19-45-104.ngrok-free.app/api/workers";
-  
+
     // Prepara os dados para envio
     const data = {
       userName: formData.nome,
@@ -54,7 +54,7 @@ const Signup = () => {
         },
       ],
     };
-  
+
     if (formData.cliente) {
       data.cpf = formData.cpf;
     } else {
@@ -62,7 +62,7 @@ const Signup = () => {
       data.fieldOfWork = formData.fieldOfWork;
       data.bio = formData.bio;
     }
-  
+
     try {
       // Faz a requisição POST para o servidor
       const response = await axios.post(endpoint, data, {
@@ -72,7 +72,7 @@ const Signup = () => {
         },
       });
       console.log("Usuário criado com sucesso:", response.data);
-  
+
       // Redireciona para a página de login temporário
       navigate("/logincliente");
     } catch (error) {
@@ -80,7 +80,6 @@ const Signup = () => {
       alert("Erro ao criar o usuário. Tente novamente.");
     }
   };
-  
 
   return (
     <div className="whole-page">
@@ -89,7 +88,11 @@ const Signup = () => {
           <Link to="/">
             <img id="minilogo" src={logo} alt="Mini Logo" />
           </Link>
-          <img id="imagem-lateral" src={imglogincliente} alt="Imagem Cadastro" />
+          <img
+            id="imagem-lateral"
+            src={imglogincliente}
+            alt="Imagem Cadastro"
+          />
         </div>
         <div id="direita">
           <div>

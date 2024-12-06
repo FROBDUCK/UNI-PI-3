@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 function UsuarioPorId() {
   const [id, setId] = useState("");
@@ -7,11 +7,14 @@ function UsuarioPorId() {
 
   const buscarUsuario = () => {
     axios
-      .get(`https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`, {
-        headers: {
-          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
-        },
-      })
+      .get(
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then((response) => {
         setUsuario(response.data);
       })
@@ -21,14 +24,17 @@ function UsuarioPorId() {
         setUsuario(null);
       });
   };
-  
+
   const deletarUsuario = () => {
     axios
-      .delete(`https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`, {
-        headers: {
-          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
-        },
-      })
+      .delete(
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then(() => {
         alert("Usuário deletado com sucesso!");
         setUsuario(null);
@@ -38,15 +44,19 @@ function UsuarioPorId() {
         alert("Erro ao deletar usuário.");
       });
   };
-  
+
   const alterarUsuario = () => {
     axios
-      .put(`https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`, usuario, {
-        headers: {
-          "Content-Type": "application/json",
-          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
-        },
-      })
+      .put(
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`,
+        usuario,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then(() => {
         alert("Usuário alterado com sucesso!");
       })
@@ -55,7 +65,6 @@ function UsuarioPorId() {
         alert("Erro ao alterar usuário.");
       });
   };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -77,19 +86,11 @@ function UsuarioPorId() {
         <div>
           <div>
             <label>Nome:</label>
-            <input
-              name="nome"
-              value={usuario.nome}
-              onChange={handleChange}
-            />
+            <input name="nome" value={usuario.nome} onChange={handleChange} />
           </div>
           <div>
             <label>Email:</label>
-            <input
-              name="email"
-              value={usuario.email}
-              onChange={handleChange}
-            />
+            <input name="email" value={usuario.email} onChange={handleChange} />
           </div>
           <div>
             <label>Telefone:</label>

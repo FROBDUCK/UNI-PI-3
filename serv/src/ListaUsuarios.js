@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function ListaUsuarios() {
   const [usuarios, setUsuarios] = useState([]);
@@ -19,7 +19,6 @@ function ListaUsuarios() {
         console.error("Erro ao buscar usuários:", error); // Log do erro no console
       });
   }, []);
-  
 
   return (
     <div>

@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import './Logadohome.css';
-import logo from './assets/logo.png';
-import { Link } from 'react-router-dom';
-import WorkerList from './WorkerList';
-import Logout from './components/Logout';
-import axios from 'axios';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Logadohome.css";
+import WorkerList from "./WorkerList";
+import imglogado from "./assets/imglogado.png";
+import logo from "./assets/logo.png";
 import Categorias from "./components/Categorias";
-import imglogado from './assets/imglogado.png';
-import Footer from './components/Footer';
-import ServicosPopulares from './components/ServicosPopulares';
+import Footer from "./components/Footer";
+import Logout from "./components/Logout";
+import ServicosPopulares from "./components/ServicosPopulares";
 
 const Logadohome = () => {
-  const userName = localStorage.getItem('userName'); // Nome do usuário logado
-  const loggedInRole = localStorage.getItem('role'); // Papel do usuário (worker ou customer)
+  const userName = localStorage.getItem("userName"); // Nome do usuário logado
+  const loggedInRole = localStorage.getItem("role"); // Papel do usuário (worker ou customer)
   const [workerId, setWorkerId] = useState(null);
   const [jobs, setJobs] = useState([]);
-  const [newJob, setNewJob] = useState({ title: '', description: '', price: '' });
+  const [newJob, setNewJob] = useState({
+    title: "",
+    description: "",
+    price: "",
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Obtém o ID do prestador logado
   useEffect(() => {
     const fetchWorkerId = async () => {
-      if (loggedInRole === 'worker') {
+      if (loggedInRole === "worker") {
         try {
           const response = await axios.get(
-            'https://a1ae-160-19-45-104.ngrok-free.app/api/workers',
+            "https://a1ae-160-19-45-104.ngrok-free.app/api/workers",
             {
               headers: {
                 "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -33,16 +37,16 @@ const Logadohome = () => {
             }
           );
           const loggedWorker = response.data.find(
-            worker => worker.userName === userName
+            (worker) => worker.userName === userName
           );
           if (loggedWorker) {
             setWorkerId(loggedWorker.id);
           } else {
-            throw new Error('Trabalhador logado não encontrado.');
+            throw new Error("Trabalhador logado não encontrado.");
           }
         } catch (err) {
-          console.error('Erro ao buscar o ID do trabalhador:', err);
-          setError('Erro ao buscar o ID do trabalhador.');
+          console.error("Erro ao buscar o ID do trabalhador:", err);
+          setError("Erro ao buscar o ID do trabalhador.");
         } finally {
           setLoading(false);
         }
@@ -50,10 +54,9 @@ const Logadohome = () => {
         setLoading(false);
       }
     };
-  
+
     fetchWorkerId();
   }, [loggedInRole, userName]);
-  
 
   // Obtém os trabalhos do prestador workers/${workerId}/jobs`);
   useEffect(() => {
@@ -70,47 +73,45 @@ const Logadohome = () => {
           );
           setJobs(response.data); // Define os trabalhos retornados
         } catch (err) {
-          console.error('Erro ao buscar os trabalhos do prestador:', err);
-          setError('Erro ao buscar os trabalhos.');
+          console.error("Erro ao buscar os trabalhos do prestador:", err);
+          setError("Erro ao buscar os trabalhos.");
         }
       };
-  
+
       fetchJobs();
     }
   }, [workerId]);
-  
 
   // Adicionar um novo trabalho
- const handleAddJob = async (e) => {
-  e.preventDefault();
-  if (workerId) {
-    try {
-      const response = await axios.post(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
-        null, // Corpo da requisição é `null`
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
-          },
-          params: {
-            jobTitle: newJob.title,
-            description: newJob.description,
-            price: newJob.price,
-          },
-        }
-      );
+  const handleAddJob = async (e) => {
+    e.preventDefault();
+    if (workerId) {
+      try {
+        const response = await axios.post(
+          `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
+          null, // Corpo da requisição é `null`
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+            },
+            params: {
+              jobTitle: newJob.title,
+              description: newJob.description,
+              price: newJob.price,
+            },
+          }
+        );
 
-      // Atualiza o estado com o novo trabalho adicionado
-      setJobs([...jobs, response.data]);
-      setNewJob({ title: '', description: '', price: '' }); // Reseta o formulário
-      alert('Trabalho adicionado com sucesso!');
-    } catch (err) {
-      console.error('Erro ao adicionar o trabalho:', err);
-      alert('Erro ao adicionar o trabalho.');
+        // Atualiza o estado com o novo trabalho adicionado
+        setJobs([...jobs, response.data]);
+        setNewJob({ title: "", description: "", price: "" }); // Reseta o formulário
+        alert("Trabalho adicionado com sucesso!");
+      } catch (err) {
+        console.error("Erro ao adicionar o trabalho:", err);
+        alert("Erro ao adicionar o trabalho.");
+      }
     }
-  }
-};
-
+  };
 
   // Deletar um trabalho
   // Função para deletar um trabalho
@@ -124,21 +125,19 @@ const Logadohome = () => {
           },
         }
       );
-  
+
       if (response.status === 200 || response.status === 204) {
         // Atualiza o estado removendo o trabalho deletado
         setJobs(jobs.filter((job) => job.id !== jobId));
-        alert('Trabalho deletado com sucesso!');
+        alert("Trabalho deletado com sucesso!");
       } else {
-        throw new Error('Falha ao deletar o trabalho.');
+        throw new Error("Falha ao deletar o trabalho.");
       }
     } catch (err) {
-      console.error('Erro ao deletar o trabalho:', err);
-      alert('Erro ao deletar o trabalho.');
+      console.error("Erro ao deletar o trabalho:", err);
+      alert("Erro ao deletar o trabalho.");
     }
   };
-  
-
 
   if (loading) {
     return <div>Carregando...</div>;
@@ -165,21 +164,27 @@ const Logadohome = () => {
           <h3>Vamos encontrar o melhor profissional para você!</h3>
         </div>
         <div className="banner_img">
-          <img src={imglogado} alt='imagem de mulheres' />
+          <img src={imglogado} alt="imagem de mulheres" />
         </div>
       </section>
       <Categorias />
 
       {/* Exibe os trabalhos ou a lista de prestadores */}
-      {loggedInRole === 'worker' ? (
+      {loggedInRole === "worker" ? (
         <div>
           <h2>Seus Trabalhos</h2>
           <ul>
             {jobs.map((job) => (
               <li key={job.id}>
-                <strong>{job.title}</strong>: {job.description} - R${job.price.toFixed(2)}
+                <strong>{job.title}</strong>: {job.description} - R$
+                {job.price.toFixed(2)}
                 <button
-                  style={{ marginLeft: '10px', padding: '5px', backgroundColor: 'red', color: 'white' }}
+                  style={{
+                    marginLeft: "10px",
+                    padding: "5px",
+                    backgroundColor: "red",
+                    color: "white",
+                  }}
                   onClick={() => handleDeleteJob(job.id)}
                 >
                   Deletar
@@ -199,7 +204,9 @@ const Logadohome = () => {
             <textarea
               placeholder="Descrição do trabalho"
               value={newJob.description}
-              onChange={(e) => setNewJob({ ...newJob, description: e.target.value })}
+              onChange={(e) =>
+                setNewJob({ ...newJob, description: e.target.value })
+              }
               required
             />
             <input
@@ -218,8 +225,8 @@ const Logadohome = () => {
           <WorkerList />
         </section>
       )}
-      <ServicosPopulares/>
-      <Footer/>
+      <ServicosPopulares />
+      <Footer />
     </div>
   );
 };
