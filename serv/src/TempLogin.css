@@ -37,22 +37,12 @@
   padding: 2rem 0;
 }
 
-.texto {
-  display: flex;
-  align-items: center;
-}
-
-.texto a {
-  padding-left: 0.25rem;
-  color: #5454c8;
-}
-
 .cadastre {
   display: flex;
   padding-top: 1rem;
 }
 
-.cadastre > a {
+.cadastre>a {
   padding-left: 0.25rem;
   color: #5454c8;
 }
@@ -67,8 +57,8 @@
   width: 25rem;
 }
 
-#div-email input,
-#div-password input {
+.div-email input,
+.div-password input {
   width: 100%;
   padding: 16px;
   border: none;
@@ -77,18 +67,13 @@
   margin-bottom: 24px;
 }
 
-#div-email input:focus,
-#div-password input:focus {
+.div-email input:focus,
+.div-password input:focus {
   outline: 2px solid #5454c8;
 }
 
-#div-email input::placeholder,
-#div-password input::placeholder {
-  font-weight: bold;
-}
-
-#div-email p,
-#div-password p {
+.div-email p,
+.div-password p {
   font-weight: bold;
   margin-bottom: 8px;
 }
@@ -98,7 +83,7 @@ form {
   flex-direction: column;
 }
 
-form > button {
+form>button {
   padding: 16px;
   border-radius: 5px;
   border: none;
@@ -110,7 +95,7 @@ form > button {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
-form > button:hover {
+form>button:hover {
   transform: scale(1.005);
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
@@ -132,6 +117,6 @@ form > button:hover {
   margin-bottom: 24px;
 }
 
-#div-checkbox > p {
+#div-checkbox>p {
   margin-left: 8px;
 }
