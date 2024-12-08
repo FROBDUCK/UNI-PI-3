@@ -9,7 +9,7 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://a1ae-160-19-45-104.ngrok-free.app/api/login/logout",
+        "http://localhost:8080/api/login/logout",
         null,
         {
           headers: {

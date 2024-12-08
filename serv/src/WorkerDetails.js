@@ -17,7 +17,7 @@ const WorkerDetails = ({ id }) => {
     const fetchWorkerDetails = async () => {
       try {
         const response = await fetch(
-          `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${id}`,
+          `http://localhost:8080/api/workers/${id}`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -43,7 +43,7 @@ const WorkerDetails = ({ id }) => {
     const fetchJobs = async () => {
       try {
         const response = await fetch(
-          `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${id}/jobs`,
+          `http://localhost:8080/api/workers/${id}/jobs`,
           {
             headers: {
               "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário

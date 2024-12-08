@@ -6,7 +6,7 @@ function ListaUsuarios() {
 
   useEffect(() => {
     axios
-      .get("https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/", {
+      .get("http://localhost:8080/api/v1/user-clientes/", {
         headers: {
           "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
         },

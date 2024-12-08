@@ -14,7 +14,7 @@ const WorkerJobsManager = () => {
     const fetchWorkerDetails = async () => {
       try {
         const response = await axios.get(
-          'https://a1ae-160-19-45-104.ngrok-free.app/api/login/worker-details',
+          'http://localhost:8080/api/login/worker-details',
           {
             headers: {
               "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -40,7 +40,7 @@ const WorkerJobsManager = () => {
       const fetchJobs = async () => {
         try {
           const response = await axios.get(
-            `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs`,
+            `http://localhost:8080/api/workers/${workerId}/jobs`,
             {
               headers: {
                 "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -62,7 +62,7 @@ const WorkerJobsManager = () => {
   const handleDeleteJob = async (jobId) => {
     try {
       await axios.delete(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs/${jobId}`,
+        `http://localhost:8080/api/workers/${workerId}/jobs/${jobId}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -82,7 +82,7 @@ const WorkerJobsManager = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
+        `http://localhost:8080/api/workers/${workerId}/add-job`,
         null, // Corpo da requisição é nulo
         {
           headers: {

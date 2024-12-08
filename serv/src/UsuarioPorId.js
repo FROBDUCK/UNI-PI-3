@@ -8,7 +8,7 @@ function UsuarioPorId() {
   const buscarUsuario = () => {
     axios
       .get(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`,
+        `http://localhost:8080/api/v1/user-clientes/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -28,7 +28,7 @@ function UsuarioPorId() {
   const deletarUsuario = () => {
     axios
       .delete(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`,
+        `http://localhost:8080/api/v1/user-clientes/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -48,7 +48,7 @@ function UsuarioPorId() {
   const alterarUsuario = () => {
     axios
       .put(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/${id}`,
+        `http://localhost:8080/api/v1/user-clientes/${id}`,
         usuario,
         {
           headers: {
