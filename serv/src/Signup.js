@@ -142,30 +142,42 @@ const Signup = () => {
                 />
               </>
             )}
-            <label id="checkbox">
-              {formData.cliente ? "Cliente" : "Prestador"}
+            <div
+              class="switch"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
               <input
                 type="checkbox"
+                id="checkbox-toggle"
                 name="cliente"
                 checked={formData.cliente}
                 onChange={(e) =>
                   setFormData({ ...formData, cliente: e.target.checked })
                 }
-                style={{ display: "none" }}
+                style={{
+                  position: "absolute",
+                  opacity: 0,
+                  width: 0,
+                  height: 0,
+                }}
               />
               <span
-                onClick={() =>
-                  setFormData({ ...formData, cliente: !formData.cliente })
-                }
                 style={{
                   display: "inline-block",
                   width: "50px",
                   height: "25px",
-                  backgroundColor: formData.cliente ? "#4CAF50" : "#ccc",
+                  backgroundColor: formData.cliente ? "#5454c8" : "#ccc",
                   borderRadius: "25px",
                   position: "relative",
                   cursor: "pointer",
                 }}
+                onClick={() =>
+                  document.getElementById("checkbox-toggle").click()
+                }
               >
                 <span
                   style={{
@@ -181,7 +193,11 @@ const Signup = () => {
                   }}
                 />
               </span>
-            </label>
+              <span style={{ cursor: "default" }}>
+                {formData.cliente ? "Cliente" : "Prestador"}
+              </span>
+            </div>
+
             <button id="botao-cadastrar" type="submit">
               Cadastrar
             </button>
