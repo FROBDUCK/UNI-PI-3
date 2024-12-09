@@ -22,15 +22,9 @@ export function Header() {
       <Link to="/">
         <img src={logo} alt="logo da marca" />
       </Link>
-      <div className={styles.container}>
-        <div className={styles.links}>
-          <strong><a href="a">Eu quero prestar serviços</a></strong>
-          <strong><a href="a">Eu quero contratar</a></strong>
-        </div>
         <div className={styles.buttons}>
           <Button type="primary" onClick={handleEntrar}>Entrar</Button>
           <Button type="secondary" onClick={handleCadastrar}>Cadastrar</Button>
-        </div>
       </div>
     </header>
   );
