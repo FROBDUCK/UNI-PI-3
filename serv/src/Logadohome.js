@@ -8,7 +8,6 @@ import logo from "./assets/logo.png";
 import Categorias from "./components/Categorias";
 import Footer from "./components/Footer";
 import Logout from "./components/Logout";
-import ServicosPopulares from "./components/ServicosPopulares";
 
 const Logadohome = () => {
   const userName = localStorage.getItem("userName"); // Nome do usuário logado
@@ -225,7 +224,6 @@ const Logadohome = () => {
           <WorkerList />
         </section>
       )}
-      <ServicosPopulares />
       <Footer />
     </div>
   );
