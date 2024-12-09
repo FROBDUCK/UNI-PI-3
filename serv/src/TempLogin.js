@@ -15,8 +15,8 @@ const Login = () => {
   const attemptLogin = async (role) => {
     const endpoint =
       role === "worker"
-        ? "https://a1ae-160-19-45-104.ngrok-free.app/api/login/worker"
-        : "https://a1ae-160-19-45-104.ngrok-free.app/api/login/customer";
+        ? "http://localhost:8080/api/login/worker"
+        : "http://localhost:8080/api/login/customer";
 
     return axios.post(
       endpoint,

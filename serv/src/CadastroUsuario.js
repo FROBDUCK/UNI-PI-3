@@ -20,7 +20,7 @@ function CadastroUsuario() {
     e.preventDefault();
     axios
       .post(
-        "https://a1ae-160-19-45-104.ngrok-free.app/api/v1/user-clientes/",
+        "http://localhost:8080/api/v1/user-clientes/",
         formData,
         {
           headers: {

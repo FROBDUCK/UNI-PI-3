@@ -34,8 +34,8 @@ const Signup = () => {
 
     // Ajusta o endpoint com a URL do servidor Ngrok
     const endpoint = formData.cliente
-      ? "https://a1ae-160-19-45-104.ngrok-free.app/api/customers"
-      : "https://a1ae-160-19-45-104.ngrok-free.app/api/workers";
+      ? "http://localhost:8080/api/customers"
+      : "http://localhost:8080/api/workers";
 
     // Prepara os dados para envio
     const data = {

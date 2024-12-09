@@ -15,7 +15,7 @@ const WorkerList = () => {
     const fetchWorkers = async () => {
       try {
         const response = await fetch(
-          'https://a1ae-160-19-45-104.ngrok-free.app/api/workers',
+          'http://localhost:8080/api/workers',
           {
             headers: {
               "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário

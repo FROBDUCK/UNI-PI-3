@@ -8,7 +8,7 @@ import logo from "./assets/logo.png";
 import Categorias from "./components/Categorias";
 import Footer from "./components/Footer";
 import Logout from "./components/Logout";
-import ServicosPopulares from "./components/ServicosPopulares";
+import { CardList } from "./components/Card";
 
 const Logadohome = () => {
   const userName = localStorage.getItem("userName"); // Nome do usuário logado
@@ -29,7 +29,7 @@ const Logadohome = () => {
       if (loggedInRole === "worker") {
         try {
           const response = await axios.get(
-            "https://a1ae-160-19-45-104.ngrok-free.app/api/workers",
+            "http://localhost:8080/api/workers",
             {
               headers: {
                 "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -64,7 +64,7 @@ const Logadohome = () => {
       const fetchJobs = async () => {
         try {
           const response = await axios.get(
-            `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs`,
+            `http://localhost:8080/api/workers/${workerId}/jobs`,
             {
               headers: {
                 "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -88,7 +88,7 @@ const Logadohome = () => {
     if (workerId) {
       try {
         const response = await axios.post(
-          `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
+          `http://localhost:8080/api/workers/${workerId}/add-job`,
           null, // Corpo da requisição é `null`
           {
             headers: {
@@ -118,7 +118,7 @@ const Logadohome = () => {
   const handleDeleteJob = async (jobId) => {
     try {
       const response = await axios.delete(
-        `https://a1ae-160-19-45-104.ngrok-free.app/api/jobs/${jobId}`,
+        `http://localhost:8080/api/jobs/${jobId}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -225,7 +225,7 @@ const Logadohome = () => {
           <WorkerList />
         </section>
       )}
-      <ServicosPopulares />
+      <CardList/>
       <Footer />
     </div>
   );
