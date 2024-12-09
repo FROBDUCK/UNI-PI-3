@@ -3,8 +3,9 @@ import Banner from "./components/Banner";
 import Categorias from "./components/Categorias";
 import ComoFunciona from "./components/ComoFunciona";
 import Footer from "./components/Footer";
+import { CardList } from './components/Card';
 import { Header } from "./components/Header";
-import ServicosPopulares from "./components/ServicosPopulares";
+
 import WorkerList from "./WorkerList";
 
 function Home() {
@@ -17,8 +18,7 @@ function Home() {
         <h1>Profissionais qualificados</h1>
         <WorkerList />
       </section>
-
-      <ServicosPopulares />
+      <CardList />
       <ComoFunciona />
       <Footer />
     </div>
