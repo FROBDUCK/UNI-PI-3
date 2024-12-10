@@ -8,7 +8,6 @@ import logo from "./assets/logo.png";
 import Categorias from "./components/Categorias";
 import Footer from "./components/Footer";
 import Logout from "./components/Logout";
-import { CardList } from "./components/Card";
 
 const Logadohome = () => {
   const userName = localStorage.getItem("userName"); // Nome do usuário logado
@@ -29,7 +28,7 @@ const Logadohome = () => {
       if (loggedInRole === "worker") {
         try {
           const response = await axios.get(
-            "http://localhost:8080/api/workers",
+            "https://a1ae-160-19-45-104.ngrok-free.app/api/workers",
             {
               headers: {
                 "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -64,7 +63,7 @@ const Logadohome = () => {
       const fetchJobs = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/api/workers/${workerId}/jobs`,
+            `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/jobs`,
             {
               headers: {
                 "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -88,7 +87,7 @@ const Logadohome = () => {
     if (workerId) {
       try {
         const response = await axios.post(
-          `http://localhost:8080/api/workers/${workerId}/add-job`,
+          `https://a1ae-160-19-45-104.ngrok-free.app/api/workers/${workerId}/add-job`,
           null, // Corpo da requisição é `null`
           {
             headers: {
@@ -118,7 +117,7 @@ const Logadohome = () => {
   const handleDeleteJob = async (jobId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/jobs/${jobId}`,
+        `https://a1ae-160-19-45-104.ngrok-free.app/api/jobs/${jobId}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
@@ -171,29 +170,26 @@ const Logadohome = () => {
 
       {/* Exibe os trabalhos ou a lista de prestadores */}
       {loggedInRole === "worker" ? (
-        <div>
-          <h2>Seus Trabalhos</h2>
-          <ul>
-            {jobs.map((job) => (
-              <li key={job.id}>
-                <strong>{job.title}</strong>: {job.description} - R$
-                {job.price.toFixed(2)}
-                <button
-                  style={{
-                    marginLeft: "10px",
-                    padding: "5px",
-                    backgroundColor: "red",
-                    color: "white",
-                  }}
-                  onClick={() => handleDeleteJob(job.id)}
-                >
-                  Deletar
-                </button>
-              </li>
-            ))}
-          </ul>
-          <h3>Adicionar Novo Trabalho</h3>
-          <form onSubmit={handleAddJob}>
+        <div className="page">
+          <div className="seus-trabalhos">
+            <h2>Seus Trabalhos</h2>
+            <ul>
+              {jobs.map((job) => (
+                <li key={job.id}>
+                  <strong>{job.title}</strong>: {job.description} - R$
+                  {job.price.toFixed(2)}
+                  <button
+                    id="botao-deletar"
+                    onClick={() => handleDeleteJob(job.id)}
+                  >
+                    Deletar
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <h3 id="adicionar-trabalho">Adicionar Novo Trabalho</h3>
+          <form className="formulario-trabalho" onSubmit={handleAddJob}>
             <input
               type="text"
               placeholder="Título do trabalho"
@@ -225,7 +221,6 @@ const Logadohome = () => {
           <WorkerList />
         </section>
       )}
-      <CardList/>
       <Footer />
     </div>
   );
