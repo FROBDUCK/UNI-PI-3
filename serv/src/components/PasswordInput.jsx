@@ -1,31 +1,22 @@
 import React, { useState } from "react";
 
-function PasswordInput() {
+function PasswordInput({ value, onChange, required }) {
   const [showPassword, setShowPassword] = useState(false);
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (event) => {
+    event.preventDefault(); // Impede que o botão submeta o formulário
     setShowPassword(!showPassword);
   };
 
   return (
-    <div class="senha">
-      <h3>Senha</h3>
+    <div id="div-password">
       <div style={{ position: "relative" }}>
         <input
           type={showPassword ? "text" : "password"}
           placeholder="Digite sua senha"
-          style={{
-            fontSize: "16px",
-            marginTop: "0.25rem",
-            width: "400px",
-            padding: "12px 12px",
-            paddingRight: "50px",
-            border: "none",
-            borderRadius: "10px",
-            outline: "none",
-            backgroundColor: "#F2F2F2",
-            marginBottom: "1rem",
-          }}
+          value={value}
+          onChange={onChange}
+          required={required}
         />
         <button
           onClick={togglePasswordVisibility}
@@ -34,19 +25,21 @@ function PasswordInput() {
             cursor: "pointer",
             border: "none",
             position: "absolute",
-            top: "50%",
-            right: '0',
-            width: '10%',
-            transform: "translateY(-80%)", 
+            top: "35%",
+            right: "10px",
+            transform: "translateY(-50%)",
+            padding: "0",
+            margin: "0",
             display: "flex",
+            alignItems: "center",
           }}
           aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
         >
           {showPassword ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="black"
@@ -60,8 +53,8 @@ function PasswordInput() {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="black"

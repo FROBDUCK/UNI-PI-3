@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 function CadastroUsuario() {
   const [formData, setFormData] = useState({
@@ -19,7 +19,16 @@ function CadastroUsuario() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/api/v1/user-clientes/", formData)
+      .post(
+        "http://localhost:8080/api/v1/user-clientes/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then((response) => {
         alert("Usuário cadastrado com sucesso!");
         setFormData({

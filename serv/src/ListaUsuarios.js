@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function ListaUsuarios() {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/user-clientes/")
+      .get("http://localhost:8080/api/v1/user-clientes/", {
+        headers: {
+          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+        },
+      })
       .then((response) => {
         console.log("Resposta da API:", response); // Log detalhado da resposta
         setUsuarios(response.data); // Atualiza o estado com os dados dos usuários

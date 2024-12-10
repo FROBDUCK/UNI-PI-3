@@ -1,0 +1,122 @@
+.total {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+.esquerda {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100vh;
+  position: relative;
+}
+
+.direita {
+  position: fixed;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--neutral-0);
+}
+
+.cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 60%;
+}
+
+.inputs {
+  width: 60%;
+  padding: 2rem 0;
+}
+
+.cadastre {
+  display: flex;
+  padding-top: 1rem;
+}
+
+.cadastre>a {
+  padding-left: 0.25rem;
+  color: #5454c8;
+}
+
+#minilogo {
+  position: absolute;
+  top: 1.5rem;
+  margin: 0 2rem;
+}
+
+.login Button {
+  width: 25rem;
+}
+
+.div-email input,
+.div-password input {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 5px;
+  background: rgb(247, 247, 247);
+  margin-bottom: 24px;
+}
+
+.div-email input:focus,
+.div-password input:focus {
+  outline: 2px solid #5454c8;
+}
+
+.div-email p,
+.div-password p {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form>button {
+  padding: 16px;
+  border-radius: 5px;
+  border: none;
+  background: #5454c8;
+  color: whitesmoke;
+  font-weight: bold;
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+form>button:hover {
+  transform: scale(1.005);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cadastre {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.cadastre p,
+.texto p,
+#div-checkbox p {
+  font-size: 16px;
+}
+
+#div-checkbox {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+#div-checkbox>p {
+  margin-left: 8px;
+}

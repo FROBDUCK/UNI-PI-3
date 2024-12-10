@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
 
 function UsuarioPorId() {
   const [id, setId] = useState("");
@@ -7,7 +7,14 @@ function UsuarioPorId() {
 
   const buscarUsuario = () => {
     axios
-      .get(`http://localhost:8080/api/v1/user-clientes/${id}`)
+      .get(
+        `http://localhost:8080/api/v1/user-clientes/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then((response) => {
         setUsuario(response.data);
       })
@@ -20,7 +27,14 @@ function UsuarioPorId() {
 
   const deletarUsuario = () => {
     axios
-      .delete(`http://localhost:8080/api/v1/user-clientes/${id}`)
+      .delete(
+        `http://localhost:8080/api/v1/user-clientes/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then(() => {
         alert("Usuário deletado com sucesso!");
         setUsuario(null);
@@ -33,7 +47,16 @@ function UsuarioPorId() {
 
   const alterarUsuario = () => {
     axios
-      .put(`http://localhost:8080/api/v1/user-clientes/${id}`, usuario)
+      .put(
+        `http://localhost:8080/api/v1/user-clientes/${id}`,
+        usuario,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+          },
+        }
+      )
       .then(() => {
         alert("Usuário alterado com sucesso!");
       })
@@ -63,19 +86,11 @@ function UsuarioPorId() {
         <div>
           <div>
             <label>Nome:</label>
-            <input
-              name="nome"
-              value={usuario.nome}
-              onChange={handleChange}
-            />
+            <input name="nome" value={usuario.nome} onChange={handleChange} />
           </div>
           <div>
             <label>Email:</label>
-            <input
-              name="email"
-              value={usuario.email}
-              onChange={handleChange}
-            />
+            <input name="email" value={usuario.email} onChange={handleChange} />
           </div>
           <div>
             <label>Telefone:</label>

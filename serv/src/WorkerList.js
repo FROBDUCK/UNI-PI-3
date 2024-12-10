@@ -14,9 +14,16 @@ const WorkerList = () => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/workers');
+        const response = await fetch(
+          'http://localhost:8080/api/workers',
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+            },
+          }
+        );
         if (!response.ok) {
-          throw new Error('Erro ao buscar os trabalhadores');
+          throw new Error("Erro ao buscar os trabalhadores");
         }
         const data = await response.json();
         setWorkers(data);
@@ -26,9 +33,10 @@ const WorkerList = () => {
         setLoading(false);
       }
     };
-
+  
     fetchWorkers();
   }, []);
+  
 
   const handleWorkerClick = (id) => {
     setSelectedWorkerId(id);

@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Signup.css";
+import imglogincliente from "./assets/imglogincliente.png";
+import logo from "./assets/logobranca.png";
 
 const Signup = () => {
+  const navigate = useNavigate(); // Inicializa o hook de navegação
   const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    password: '',
-    telefone: '',
-    state: '',
-    city: '',
-    zipCode: '',
-    district: '',
-    street: '',
-    num: '',
-    cpf: '', 
-    cnpj: '', 
-    fieldOfWork: '', 
-    bio: '', 
+    nome: "",
+    email: "",
+    password: "",
+    telefone: "",
+    state: "",
+    city: "",
+    zipCode: "",
+    district: "",
+    street: "",
+    num: "",
+    cpf: "",
+    cnpj: "",
+    fieldOfWork: "",
+    bio: "",
     cliente: true,
   });
 
@@ -28,9 +32,10 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Ajusta o endpoint com a URL do servidor Ngrok
     const endpoint = formData.cliente
-      ? 'http://localhost:8080/api/customers'
-      : 'http://localhost:8080/api/workers';
+      ? "http://localhost:8080/api/customers"
+      : "http://localhost:8080/api/workers";
 
 
     const data = {
@@ -59,88 +64,151 @@ const Signup = () => {
     }
 
     try {
+      // Faz a requisição POST para o servidor
       const response = await axios.post(endpoint, data, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
         },
       });
-      console.log('Usuário criado com sucesso:', response.data);
+      console.log("Usuário criado com sucesso:", response.data);
+
+      // Redireciona para a página de login temporário
+      navigate("/logincliente");
     } catch (error) {
-      console.error('Erro ao criar usuário:', error);
+      console.error("Erro ao criar usuário:", error);
+      alert("Erro ao criar o usuário. Tente novamente.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h1>Página de Cadastro</h1>
-        <Link to="/">
-          <button>Voltar para Home</button>
-        </Link>
-      </div>
-
-      <input name="nome" placeholder="Nome" onChange={handleChange} />
-      <input name="email" placeholder="E-mail" onChange={handleChange} />
-      <input name="password" type="password" placeholder="Senha" onChange={handleChange} />
-      <input name="telefone" placeholder="Telefone" onChange={handleChange} />
-      <input name="state" placeholder="Estado" onChange={handleChange} />
-      <input name="city" placeholder="Cidade" onChange={handleChange} />
-      <input name="zipCode" placeholder="CEP" onChange={handleChange} />
-      <input name="district" placeholder="Bairro" onChange={handleChange} />
-      <input name="street" placeholder="Rua" onChange={handleChange} />
-      <input name="num" placeholder="Número" onChange={handleChange} />
-
-     
-      {formData.cliente && <input name="cpf" placeholder="CPF" onChange={handleChange} />}
-
-    
-      {!formData.cliente && (
-        <>
-          <input name="cnpj" placeholder="CNPJ" onChange={handleChange} />
-          <input name="fieldOfWork" placeholder="Área de Trabalho" onChange={handleChange} />
-          <input name="bio" placeholder="Biografia" onChange={handleChange} />
-        </>
-      )}
-
-      <label>
-        {formData.cliente ? 'Cliente' : 'Prestador'}
-        <input
-          type="checkbox"
-          name="cliente"
-          checked={formData.cliente}
-          onChange={(e) => setFormData({ ...formData, cliente: e.target.checked })}
-          style={{ display: 'none' }}
-        />
-        <span
-          onClick={() => setFormData({ ...formData, cliente: !formData.cliente })}
-          style={{
-            display: 'inline-block',
-            width: '50px',
-            height: '25px',
-            backgroundColor: formData.cliente ? '#4CAF50' : '#ccc',
-            borderRadius: '25px',
-            position: 'relative',
-            cursor: 'pointer',
-          }}
-        >
-          <span
-            style={{
-              display: 'block',
-              width: '23px',
-              height: '23px',
-              backgroundColor: '#fff',
-              borderRadius: '50%',
-              position: 'absolute',
-              top: '1px',
-              left: formData.cliente ? '26px' : '1px',
-              transition: 'left 0.2s',
-            }}
+    <div className="whole-page">
+      <form id="formulario" onSubmit={handleSubmit}>
+        <div id="esquerda">
+          <Link to="/">
+            <img id="minilogo" src={logo} alt="Mini Logo" />
+          </Link>
+          <img
+            id="imagem-lateral"
+            src={imglogincliente}
+            alt="Imagem Cadastro"
           />
-        </span>
-      </label>
+        </div>
+        <div id="direita">
+          <div>
+            <h1>Cadastre-se agora</h1>
+          </div>
+          <div className="inputs">
+            <input name="nome" placeholder="Nome" onChange={handleChange} />
+            <input name="email" placeholder="E-mail" onChange={handleChange} />
+            <input
+              name="password"
+              type="password"
+              placeholder="Senha"
+              onChange={handleChange}
+            />
+            <input
+              name="telefone"
+              placeholder="Telefone"
+              onChange={handleChange}
+            />
+            <input name="state" placeholder="Estado" onChange={handleChange} />
+            <input name="city" placeholder="Cidade" onChange={handleChange} />
+            <input name="zipCode" placeholder="CEP" onChange={handleChange} />
+            <div id="endereco">
+              <input
+                name="district"
+                placeholder="Bairro"
+                onChange={handleChange}
+              />
+              <input name="street" placeholder="Rua" onChange={handleChange} />
+              <input name="num" placeholder="Número" onChange={handleChange} />
+            </div>
+            {formData.cliente && (
+              <input name="cpf" placeholder="CPF" onChange={handleChange} />
+            )}
+            {!formData.cliente && (
+              <>
+                <input name="cnpj" placeholder="CNPJ" onChange={handleChange} />
+                <input
+                  name="fieldOfWork"
+                  placeholder="Área de Trabalho"
+                  onChange={handleChange}
+                />
+                <input
+                  name="bio"
+                  placeholder="Biografia"
+                  onChange={handleChange}
+                />
+              </>
+            )}
+            <div
+              class="switch"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <input
+                type="checkbox"
+                id="checkbox-toggle"
+                name="cliente"
+                checked={formData.cliente}
+                onChange={(e) =>
+                  setFormData({ ...formData, cliente: e.target.checked })
+                }
+                style={{
+                  position: "absolute",
+                  opacity: 0,
+                  width: 0,
+                  height: 0,
+                }}
+              />
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "50px",
+                  height: "25px",
+                  backgroundColor: formData.cliente ? "#5454c8" : "#ccc",
+                  borderRadius: "25px",
+                  position: "relative",
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  document.getElementById("checkbox-toggle").click()
+                }
+              >
+                <span
+                  style={{
+                    display: "block",
+                    width: "23px",
+                    height: "23px",
+                    backgroundColor: "#fff",
+                    borderRadius: "50%",
+                    position: "absolute",
+                    top: "1px",
+                    left: formData.cliente ? "26px" : "1px",
+                    transition: "left 0.2s",
+                  }}
+                />
+              </span>
+              <span style={{ cursor: "default" }}>
+                {formData.cliente ? "Cliente" : "Prestador"}
+              </span>
+            </div>
 
-      <button type="submit">Cadastrar</button>
-    </form>
+            <button id="botao-cadastrar" type="submit">
+              Cadastrar
+            </button>
+            <div id="possui-conta">
+              <p>Já possui uma conta?</p>
+              <Link to="/logincliente">Login</Link>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -16,9 +16,16 @@ const WorkerDetails = ({ id }) => {
   useEffect(() => {
     const fetchWorkerDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/workers/${id}`);
+        const response = await fetch(
+          `http://localhost:8080/api/workers/${id}`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+            },
+          }
+        );
         if (!response.ok) {
-          throw new Error('Erro ao buscar os detalhes do trabalhador');
+          throw new Error("Erro ao buscar os detalhes do trabalhador");
         }
         const data = await response.json();
         setWorker(data);
@@ -28,16 +35,23 @@ const WorkerDetails = ({ id }) => {
         setLoading(false);
       }
     };
-
+  
     fetchWorkerDetails();
   }, [id]);
-
+  
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/workers/${id}/jobs`);
+        const response = await fetch(
+          `http://localhost:8080/api/workers/${id}/jobs`,
+          {
+            headers: {
+              "ngrok-skip-browser-warning": "true", // Adiciona o cabeçalho necessário
+            },
+          }
+        );
         if (!response.ok) {
-          throw new Error('Erro ao buscar os trabalhos do trabalhador');
+          throw new Error("Erro ao buscar os trabalhos do trabalhador");
         }
         const data = await response.json();
         setJobs(data);
@@ -45,9 +59,10 @@ const WorkerDetails = ({ id }) => {
         setError(error.message);
       }
     };
-
+  
     fetchJobs();
   }, [id]);
+  
 
   const handleHireJob = (jobId) => {
     if (loggedInUser && loggedInRole === 'customer') {
