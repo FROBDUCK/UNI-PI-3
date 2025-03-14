@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./demo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - frontend
+
+  frontend:
+    build: ./serv
+    ports:
+      - "3000:80"
